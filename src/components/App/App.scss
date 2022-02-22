@@ -1,0 +1,58 @@
+@import '../colors.scss';
+
+.root{
+    padding: 10px 10px 10px 10px;
+}
+
+.active {
+    background-color: $blue;
+    color: #fff;
+    outline: none;
+    box-sizing: border-box;
+    text-transform: uppercase;
+    height: 50px;
+}
+
+.contentWrapper{
+    display: flex;
+}
+
+.weight600 {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 20px;
+}
+
+body {
+    background-color: $fill;
+    font-family: 'OpenSans' sans-serif;
+    font-style: normal;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.block-shadow {
+    background-color: white;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 20px 0 20px 0;
+}
+
+
+@media screen and (max-width: 800px) {
+    main {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+}

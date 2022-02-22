@@ -1,0 +1,27 @@
+@import '../../../../colors.scss';
+
+.route {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+    .routeBlock {
+        display: flex;
+        flex-direction: column;
+        font-weight: 600;
+
+        .name {
+            font-size: 12px;
+            line-height: 18px;
+            text-transform: uppercase;
+            color: $grayText;
+        }
+
+        .time {
+            font-size: 14px;
+            line-height: 21px;
+            color: $bleckText;
+        }
+    }
+}

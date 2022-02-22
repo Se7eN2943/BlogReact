@@ -1,0 +1,113 @@
+@import '../colors.scss';
+
+.filters {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+    width: 250px;
+    height: 260px;
+
+    .ant-checkbox-wrapper {
+        height: 40px;
+        padding: 10px 20px 10px 20px;
+
+        &:hover {
+            background-color: $blueHover;
+        }
+    }
+
+    .ant-checkbox-group {
+        display: flex;
+        flex-direction: column;
+
+        .ant-checkbox-group-item {
+            height: 40px;
+            padding: 10px 20px 10px 20px;
+            margin: 0;
+
+            &:hover {
+                background-color: $blueHover;
+            }
+        }
+    }
+
+    .transplants {
+        padding: 0 20px 0 20px;
+    }
+
+    .ant-checkbox-checked::after {
+        color: white;
+        border: 1px solid $blue;
+    }
+
+    .ant-checkbox-checked .ant-checkbox-inner {
+        color: $blue;
+        background-color: white;
+
+        &::after {
+            border: 1px solid $blue;
+            border-top: 0;
+            border-left: 0;
+        }
+    }
+
+    .ant-checkbox-indeterminate .ant-checkbox-inner::after {
+        background-color: $blue;
+    }
+
+
+}
+
+
+@media screen and (max-width: 800px) {
+    .filters {
+        justify-content: center;
+        align-items: start;
+        margin-right: 0;
+        width: 65%;
+        height: 100%;
+        margin-bottom: 20px;
+
+        .ant-checkbox-wrapper {
+            height: 100%;
+            padding: 0 0 0 10px;
+            margin-bottom: 10px;
+
+        }
+
+        .ant-checkbox-group {
+            flex-direction: row;
+            flex-wrap: wrap;
+            padding: 0 0 0 10px;
+            justify-content: start;
+
+            .ant-checkbox-group-item {
+                height: 100%;
+                padding: 0 10px 0 0;
+                margin: 0;
+                width: 50%;
+            }
+        }
+
+        .transplants {
+            padding: 0 10px 0 10px;
+            margin-bottom: 10px;
+        }
+    }
+}
+
+@media screen and (max-width: 670px) {
+
+    .filters {
+        width: 80%;
+    }
+
+}
+
+@media screen and (max-width: 485px) {
+
+    .filters {
+        width: 100%;
+    }
+
+}

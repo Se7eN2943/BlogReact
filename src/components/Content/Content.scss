@@ -1,0 +1,29 @@
+.content{
+    margin-bottom: 50px;
+}
+
+@media screen and (max-width: 800px) {
+
+    .content{
+        display: flex;
+        flex-direction: column;
+        width: 65%;
+    }
+
+}
+
+@media screen and (max-width: 670px) {
+
+    .content{
+        width: 80%;
+    }
+
+}
+
+@media screen and (max-width: 485px) {
+
+    .content{
+        width: 100%;
+    }
+
+}
