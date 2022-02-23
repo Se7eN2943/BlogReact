@@ -1,11 +1,21 @@
-@import '../../../colors.scss';
+@import '../../colors.scss';
 
 main {
     .article {
+        display: flex;
+        
         &_tittle {
             &__header {}
+
+            &__tags {}
+
+            &__tittle {}
         }
 
-        &_user {}
+        &_user {
+            &__title {}
+
+            &__img {}
+        }
     }
 }

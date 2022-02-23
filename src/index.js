@@ -8,6 +8,7 @@ import 'antd/dist/antd.css';
 import './reset.scss';
 import './components/App/App.scss';
 import './components/Header/Header.scss';
+import './components/Article/Article.scss';
 
 
 const root = document.querySelector('.root');
