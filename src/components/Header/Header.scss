@@ -1,0 +1,21 @@
+@import '../../colors.scss';
+
+header {
+    color: $heading-color;
+    font-size: 18px;
+    line-height: 28px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 22px 10px 22px;
+
+    button {
+        padding: 8px 18px 8px 18px;
+    }
+
+    .sign-in-button {
+        margin-right: 19px;
+        background-color: white;
+    }
+}

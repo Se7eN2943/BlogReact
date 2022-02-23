@@ -4,15 +4,11 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import reducer from './reducer';
 import App from './components/App/App';
-import 'animate.css';
 import 'antd/dist/antd.css';
+import './reset.scss';
 import './components/App/App.scss';
-import './components/Filters/Filters.scss';
-import './components/Content/Nav/Nav.scss';
-import './components/Content/TicketList/TicketList.scss';
-import './components/Content/TicketList/Ticket/Ticket.scss';
-import './components/Content/TicketList/Ticket/Route/Route.scss';
-import './components/Content/Content.scss';
+import './components/Header/Header.scss';
+
 
 const root = document.querySelector('.root');
 

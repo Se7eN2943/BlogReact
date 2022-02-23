@@ -1,4 +1,5 @@
-export default class AviaSales {
+export default class blogAPI {
+
   getSearchId = async () => {
     const res = await fetch('https://aviasales-test-api.java-mentor.com/search');
     if (!res.ok) throw new Error('Что то пошло не так');
@@ -14,4 +15,5 @@ export default class AviaSales {
       return false;
     }
   };
+  
 }
