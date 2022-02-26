@@ -9,6 +9,8 @@ import './reset.scss';
 import './components/App/App.scss';
 import './components/Header/Header.scss';
 import './components/Article/Article.scss';
+import './components/ArticleList/ArticleList.scss';
+import './components/AlloneArticle/AlloneArticle.scss';
 
 
 const root = document.querySelector('.root');

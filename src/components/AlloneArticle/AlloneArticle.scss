@@ -1,0 +1,16 @@
+.article_wrapper {
+    background-color: #fff;
+    width: 940px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+
+    .article_body {
+        display: flex;
+        flex-direction: column;
+        height: 50vh;
+        margin-top: -30px;
+        padding: 15px;
+    }
+}
+

@@ -1,45 +1,45 @@
 const initialState = {
-  searchId: '',
-  tickets: [],
-  ticketsFlag: false,
-  filterList: ['Без пересадок'],
-  sortFlag: 'discount',
-  sliced: 5,
+  articles: [],
+  articlesCount: 0
 };
 
-const reducer = (state = initialState, { payload, type }) => {
+const reducer = (state = initialState, {
+  payload,
+  type
+}) => {
   switch (type) {
-    case 'SEARCH_ID':
+    case 'ARTICLES':
       return {
         ...state,
-        searchId: payload.searchId,
+        articles: payload.articles,
+          articlesCount: payload.articlesCount,
       };
-    case 'TICKETS':
-      return {
-        ...state,
-        tickets: state.tickets.concat(payload.tickets),
-        ticketsFlag: payload.stop,
-      };
-    case 'SORT':
-      return {
-        ...state,
-        sortFlag: payload,
-      };
-    case 'FILTER':
-      return {
-        ...state,
-        filterList: payload,
-      };
-    case 'SLICED':
-      return {
-        ...state,
-        sliced: payload,
-      };
-    case 'TICKETS_FLAG':
-      return {
-        ...state,
-        ticketsFlag: payload,
-      };
+      // case 'TICKETS':
+      //   return {
+      //     ...state,
+      //     tickets: state.tickets.concat(payload.tickets),
+      //     ticketsFlag: payload.stop,
+      //   };
+      // case 'SORT':
+      //   return {
+      //     ...state,
+      //     sortFlag: payload,
+      //   };
+      // case 'FILTER':
+      //   return {
+      //     ...state,
+      //     filterList: payload,
+      //   };
+      // case 'SLICED':
+      //   return {
+      //     ...state,
+      //     sliced: payload,
+      //   };
+      // case 'TICKETS_FLAG':
+      //   return {
+      //     ...state,
+      //     ticketsFlag: payload,
+      //   };
     default:
       return state;
   }

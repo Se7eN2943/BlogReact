@@ -1,7 +1,11 @@
 export default class blogAPI {
 
-  getSearchId = async () => {
-    const res = await fetch('https://aviasales-test-api.java-mentor.com/search');
+  constructor() {
+    this.baseUrl = 'https://kata.academy:8021/api';
+  }
+
+  getArticles = async (page) => {
+    const res = await fetch(`${this.baseUrl}/articles?limit=20&offset=${page}`);
     if (!res.ok) throw new Error('Что то пошло не так');
     return await res.json();
   };
@@ -15,5 +19,5 @@ export default class blogAPI {
       return false;
     }
   };
-  
+
 }
