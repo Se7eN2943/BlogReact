@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
-import { Routes, Route, Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
+
 
 const HeartOutlined = ({ liked }) => {
     return (
@@ -61,12 +62,12 @@ const ArticleTittle = (props) => {
         setLike(true)
         return setLikeCount(likeCount => likeCount += 1)
     }
-
+console.log(useParams())
     return (
         <div className="article_tittle">
             <div className="article_tittle__header">
-                <h5 onClick={() => getArticle(slug)}>
-                    <Link to='/singlpage'>{title}</Link>
+                <h5 onClick={useParams().slug && null}>
+                    <Link to={`articles/${slug}`}>{title}</Link>
                 </h5>
                 {like ? <HeartFilled liked={liked} /> : <HeartOutlined liked={liked} />}
                 <div className="licke-count">
@@ -79,7 +80,7 @@ const ArticleTittle = (props) => {
             <p className="article_tittle__tittle">
                 {description}
             </p>
-        </div>
+        </div >
     )
 }
 

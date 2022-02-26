@@ -16,7 +16,6 @@ const reducer = (state = initialState, {
           articlesCount: payload.articlesCount,
       };
     case 'ARTICLE':
-      console.log(payload.article)
       return {
         ...state,
         article: payload.article

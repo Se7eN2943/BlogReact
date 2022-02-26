@@ -1,14 +1,17 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { connect } from 'react-redux'
+import { useParams} from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import ArticleTittle from '../Article/ArticleTittle';
 import ArticleUser from '../Article/ArticleUser';
 
-const AlloneArticle = ({ article }) => {
-
-
-
+const AlloneArticle = ({ article, getArticle }) => {
+    const { slug } = useParams()
+    console.log(slug)
+    useEffect(()=>{
+        getArticle(slug)
+    }, [])
     return (
         <main>
             <div className="article  article-alone">
