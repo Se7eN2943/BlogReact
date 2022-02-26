@@ -8,6 +8,11 @@ body {
     font-weight: normal;
 }
 
+main {
+    display: flex;
+    justify-content: center;
+}
+
 .color-button {
     background: white;
     color: $success-color;

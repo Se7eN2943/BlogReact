@@ -5,6 +5,13 @@ export const setArticles = articles => {
   };
 };
 
+export const setArticle = article => {
+  return {
+    type: 'ARTICLE',
+    payload: article,
+  };
+};
+
 // export const setTickets = (tickets) => {
 //   return {
 //     type: 'TICKETS',

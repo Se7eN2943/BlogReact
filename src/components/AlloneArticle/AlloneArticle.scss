@@ -1,16 +1,12 @@
-.article_wrapper {
-    background-color: #fff;
-    width: 940px;
-    display: flex;
+.article-alone {
     flex-direction: column;
-    box-sizing: border-box;
+    justify-content: flex-start;
+    height: 100%;
 
-    .article_body {
+    &_header {
         display: flex;
-        flex-direction: column;
-        height: 50vh;
-        margin-top: -30px;
-        padding: 15px;
+    }
+    &_body{
+        padding: 25px 40px 40px 0;
     }
 }
-

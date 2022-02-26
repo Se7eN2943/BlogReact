@@ -1,6 +1,7 @@
 const initialState = {
   articles: [],
-  articlesCount: 0
+  articlesCount: 0,
+  article: {}
 };
 
 const reducer = (state = initialState, {
@@ -13,6 +14,12 @@ const reducer = (state = initialState, {
         ...state,
         articles: payload.articles,
           articlesCount: payload.articlesCount,
+      };
+    case 'ARTICLE':
+      console.log(payload.article)
+      return {
+        ...state,
+        article: payload.article
       };
       // case 'TICKETS':
       //   return {

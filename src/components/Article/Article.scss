@@ -1,100 +1,100 @@
 @import '../../colors.scss';
 
-main {
-    .article {
-        // filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.15));
-        width: 940px;
-        border-radius: 5px;
-        background-color: $articles-background;
-        display: flex;
-        justify-content: space-between;
-        padding: 15px;
-        margin-bottom: 25px;
 
-        &_tittle {
-            width: 700px;
+.article {
+    filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.15));
+    width: 940px;
+    border-radius: 5px;
+    background-color: $articles-background;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    margin-bottom: 25px;
 
-            &__header {
+    &_tittle {
+        width: 700px;
+
+        &__header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+
+            h5 {
+                cursor: pointer;
+                font-size: 20px;
+                line-height: 28px;
+                color: $blue;
+                margin-right: 13px;
+                max-width: 600px;
+            }
+
+            .heart {
+                cursor: pointer;
+                margin-right: 5px;
                 display: flex;
+                justify-content: center;
                 align-items: center;
-                margin-bottom: 5px;
-
-                h5 {
-                    cursor: pointer;
-                    font-size: 20px;
-                    line-height: 28px;
-                    color: $blue;
-                    margin-right: 13px;
-                    max-width: 600px;
-                }
-
-                .heart {
-                    cursor: pointer;
-                    margin-right: 5px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                }
-
-                .licke-count {
-                    font-size: 12px;
-                    line-height: 22px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                }
             }
 
-            &__tags {
-                display: flex;
-                margin-bottom: 5px;
-
-                .tag {
-                    color: $text-color-secondary;
-                    font-size: 12px;
-                    line-height: 15px;
-                    padding: 2px 5px 2px 5px;
-                    border: 1px solid rgba(0, 0, 0, 0.5);
-                    box-sizing: border-box;
-                    border-radius: 2px;
-                    margin-right: 8px;
-                }
-            }
-
-            &__tittle {
+            .licke-count {
                 font-size: 12px;
                 line-height: 22px;
-                color: $text-color;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
         }
 
-        &_user {
+        &__tags {
             display: flex;
+            margin-bottom: 5px;
 
-            &__title {
-                margin-right: 12px;
+            .tag {
+                color: $text-color-secondary;
+                font-size: 12px;
+                line-height: 15px;
+                padding: 2px 5px 2px 5px;
+                border: 1px solid rgba(0, 0, 0, 0.5);
+                box-sizing: border-box;
+                border-radius: 2px;
+                margin-right: 8px;
+            }
+        }
 
-                .user_header {
-                    color: $heading-color;
-                    font-size: 18px;
-                    line-height: 28px;
-                }
+        &__tittle {
+            font-size: 12px;
+            line-height: 22px;
+            color: $text-color;
+        }
+    }
 
-                .user_date {
-                    color: $text-color-secondary;
-                    font-size: 12px;
-                    line-height: 22px;
-                }
+    &_user {
+        display: flex;
+
+        &__title {
+            margin-right: 12px;
+
+            .user_header {
+                color: $heading-color;
+                font-size: 18px;
+                line-height: 28px;
             }
 
-            &__img {
-                width: 46px;
-                height: 46px;
-                img{
-                    width: 100%;
-                    height: 100%;
-                    border-radius: 50%;
-                }
+            .user_date {
+                color: $text-color-secondary;
+                font-size: 12px;
+                line-height: 22px;
+            }
+        }
+
+        &__img {
+            width: 46px;
+            height: 46px;
+
+            img {
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
             }
         }
     }

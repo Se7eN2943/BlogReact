@@ -3,14 +3,12 @@ import { connect } from 'react-redux'
 import AlloneArticle from '../AlloneArticle/AlloneArticle';
 import Article from '../Article/Article';
 
-const ArticleList = ({ articles }) => {
+const ArticleList = ({ articles, getArticle }) => {
 
     const elements = articles.map(article => {
         return <Article
             key={article.slug}
-            author={article.author}
             body={article.body}
-            createdAt={article.createdAt}
             description={article.description}
             favorited={article.favorited}
             favoritesCount={article.favoritesCount}
@@ -18,15 +16,17 @@ const ArticleList = ({ articles }) => {
             tagList={article.tagList}
             title={article.title}
             updatedAt={article.updatedAt}
+            getArticle={getArticle}
+            author={article.author}
+            createdAt={article.createdAt}
         />
     })
+
 
     return (
         <main>
             <div className="article-list">
-                {/* <AlloneArticle /> */}
                 {elements}
-
             </div>
         </main>
     )
@@ -34,7 +34,7 @@ const ArticleList = ({ articles }) => {
 
 const mapStateToProps = (state) => {
     return {
-        articles: state.articles,
+        articles: state.articles
     }
 }
 
