@@ -33,7 +33,7 @@ const SingUp = () => {
                 <button className="form_submit" type="submit">Create</button>
                 <div className="form_footer">
                     Already have an account?
-                    <span> <Link to='`articles'>Sign In.</Link> </span>
+                    <span> <Link to='/sign-in'>Sign In.</Link> </span>
                 </div>
             </form>
         </div>

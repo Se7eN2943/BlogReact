@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import AlloneArticle from '../Article/AlloneArticle';
 import Article from '../Article/Article';
 
 const ArticleList = ({ articles, getArticle }) => {

@@ -7,14 +7,15 @@ import blogAPI from '../../services'
 import Header from '../Header/Header'
 import ArticleList from '../ArticleList/ArticleList'
 import AlloneArticle from '../Article/AlloneArticle'
-
-
-
-import EditArticle from '../Forms/EditArticle'
-import CreateArticle from '../Forms/CreateArticle'
-import EditProfile from '../Forms/EditProfile'
 import SignIn from '../Forms/SignIn'
 import SingUp from '../Forms/SingUp'
+
+
+
+// import EditArticle from '../Forms/EditArticle'
+// import CreateArticle from '../Forms/CreateArticle'
+// import EditProfile from '../Forms/EditProfile'
+
 
 const blog = new blogAPI();
 
@@ -33,31 +34,33 @@ const App = ({ setArticles, setArticle, totalRes }) => {
     return (
         <>
             <Header />
+            {/*
             <EditArticle />
             <CreateArticle />
             <EditProfile />
-            <SignIn />
-            <SingUp />
             {/* <Spin /> */}
-            {/* <Routes>
+            <Routes>
                 <Route path='/articles' element={<ArticleList getArticle={getArticle} />} />
                 <Route path='/' element={<Navigate to='/articles' replace />} />
                 <Route path='articles/:slug' element={<AlloneArticle getArticle={getArticle} />} />
+                <Route path='sign-in' element={<SignIn />} />
+                <Route path='sign-up' element={<SingUp />} />
+                <Route path='/' element={totalRes > 20 && <Pagination
+                    showSizeChanger={false}
+                    pageSize={20}
+                    onChange={page => {
+                        setPage(page)
+                        getAllArticles((page - 1) * 20)
+                    }}
+                    size="small"
+                    total={totalRes}
+                    current={page}
+                />} />
+
             </Routes>
-            {totalRes > 20 && <Pagination
-                showSizeChanger={false}
-                pageSize={20}
-                onChange={page => {
-                    setPage(page)
-                    getAllArticles((page - 1) * 20)
-                }}
-                size="small"
-                total={totalRes}
-                current={page}
-            />} */}
+
         </>
     )
-
 }
 
 const mapStateToProps = (state) => {

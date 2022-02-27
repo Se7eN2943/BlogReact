@@ -20,7 +20,7 @@ const SingIn = () => {
                 <button className="form_submit" type="submit">Create</button>
                 <div className="form_footer">
                     Already have an account?
-                    <span> <Link to='`articles'>Sign Up.</Link> </span>
+                    <span><Link to='/sign-up'>Sign Up.</Link></span>
                 </div>
             </form>
         </div>

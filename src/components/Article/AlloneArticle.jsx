@@ -1,6 +1,6 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux'
-import { useParams} from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import ArticleTittle from './ArticleTittle';
@@ -8,12 +8,12 @@ import ArticleUser from './ArticleUser';
 
 const AlloneArticle = ({ article, getArticle }) => {
     const { slug } = useParams()
-    useEffect(()=>{
+    useEffect(() => {
         getArticle(slug)
     }, [])
     return (
         <main>
-            <div className="shadow-box  article-alone">
+            <div className="article shadow-box article-alone">
                 <div className="article-alone_header">
                     <ArticleTittle
                         author={article.author}

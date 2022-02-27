@@ -67,7 +67,7 @@ const ArticleTittle = (props) => {
         <div className="article_tittle">
             <div className="article_tittle__header">
                 <h5 onClick={useParams().slug && null}>
-                    <Link to={`articles/${slug}`}>{title}</Link>
+                    <Link to={`/articles/${slug}`}>{title}</Link>
                 </h5>
                 {like ? <HeartFilled liked={liked} /> : <HeartOutlined liked={liked} />}
                 <div className="licke-count">
