@@ -68,6 +68,8 @@
         &__label {
             font-size: 14px;
             line-height: 22px;
+            display: flex;
+            flex-direction: column;
         }
     }
 

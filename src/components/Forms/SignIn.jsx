@@ -10,11 +10,15 @@ const SingIn = () => {
             <h5> Sign In </h5>
             <form className='form_form' action="">
                 <div className="form_input">
-                    <label className="form_input__label" htmlFor="email">Email address</label>
-                    <input placeholder='Email address' name='email' id='email' type="email" />
+                    <label className="form_input__label" htmlFor="email">
+                        Email address
+                        <input placeholder='Email address' name='email' id='email' type="email" />
+                    </label>
                 </div>
                 <div className="form_input">
-                    <label className="form_input__label" htmlFor="password">Password</label>
+                    <label className="form_input__label" htmlFor="password">
+                        Password
+                    </label>
                     <input placeholder='Password' name='password' id='password' type="password" />
                 </div>
                 <button className="form_submit" type="submit">Create</button>

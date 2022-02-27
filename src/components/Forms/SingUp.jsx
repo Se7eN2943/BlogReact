@@ -1,30 +1,39 @@
 import React, { useEffect } from 'react';
 import { Checkbox } from 'antd';
 import { Link } from 'react-router-dom'
+import { useForm } from "react-hook-form";
 import { connect } from 'react-redux'
 
 
 const SingUp = () => {
-
+    const { register, handleSubmit, watch, formState: { errors } } = useForm();
     return (
         <div className="form shadow-box">
             <h5>  Create new account </h5>
             <form className='form_form' action="">
                 <div className="form_input">
-                    <label className="form_input__label" htmlFor="username">Username</label>
-                    <input placeholder="Username" name='username' id='username' type="text" />
+                    <label className="form_input__label" htmlFor="username">
+                        Username
+                        <input placeholder="Username" name='username' id='username' type="text" />
+                    </label>
                 </div>
                 <div className="form_input">
-                    <label className="form_input__label" htmlFor="email">Email address</label>
-                    <input placeholder='Email address' name='email' id='email' type="email" />
+                    <label className="form_input__label" htmlFor="email">
+                        Email address
+                        <input placeholder='Email address' name='email' id='email' type="email" />
+                    </label>
                 </div>
                 <div className="form_input">
-                    <label className="form_input__label" htmlFor="password">Password</label>
-                    <input placeholder='Password' name='password' id='password' type="password" />
+                    <label className="form_input__label" htmlFor="password">
+                        Password
+                        <input placeholder='Password' name='password' id='password' type="password" />
+                    </label>
                 </div>
                 <div className="form_input">
-                    <label className="form_input__label" htmlFor="repeatPassword">Repeat Password</label>
-                    <input placeholder='Password' name='repeatPassword' id='repeatPassword' type="password" />
+                    <label className="form_input__label" htmlFor="repeatPassword">
+                        Repeat Password
+                        <input placeholder='Password' name='repeatPassword' id='repeatPassword' type="password" />
+                    </label>
                 </div>
                 <div className="form_line"></div>
                 <div className="form_checkbox">

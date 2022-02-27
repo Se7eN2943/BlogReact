@@ -44,8 +44,6 @@ const App = ({ setArticles, setArticle, totalRes }) => {
             <Header />
             {/* <EditArticle /> */}
 
-
-
             {load ? <Spin /> :
                 <Routes>
                     <Route path='/articles' element={

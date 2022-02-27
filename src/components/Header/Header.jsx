@@ -7,12 +7,12 @@ import acc from './user_photo.png'
 const NonAuthHeader = () => {
     return (
         <div className="autoris-buttons">
-            <button className='sign-in-button'>
-                <Link to='/sign-in'>Sign in</Link>
-            </button>
-            <button className='sign-up-button color-button'>
-                <Link to='/sign-up'>Sign Up</Link>
-            </button>
+            <Link to='/sign-in'>
+                <button className='sign-in-button'>Sign in </button>
+            </Link>
+            <Link to='/sign-up'>
+                <button className='sign-up-button color-button'>Sign Up</button>
+            </Link>
         </div>
     )
 }
@@ -21,18 +21,18 @@ const AuthHeader = ({ username, setLogOut }) => {
 
     return (
         <div className="autoris-block">
-            <button className='create-button color-button'>
-                <Link to='/new-article'>Create article</Link>
-            </button>
+            <Link to='/new-article'>
+                <button className='create-button color-button'>Create article </button>
+            </Link>
             <div className="username">
                 {username}
             </div>
             <div className="user-img">
                 <Link to='/profile'><img src={acc} alt="Profile IMG" /></Link>
             </div>
-            <button className='log-out-button color-button'>
-                <Link onClick={() => setLogOut()} to='/'>Log Out</Link>
-            </button>
+            <Link onClick={() => setLogOut()} to='/'>
+                <button className='log-out-button color-button'>Log Out</button>
+            </Link>
         </div>
     )
 }
