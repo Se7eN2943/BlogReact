@@ -4,7 +4,7 @@ import ArticleUser from './ArticleUser'
 
 const Article = props => {
     return (
-        <div className="article">
+        <div className="article shadow-box">
             <ArticleTittle
                 description={props.description}
                 favorited={props.favorited}

@@ -12,6 +12,7 @@ import './components/Header/Header.scss';
 import './components/Article/Article.scss';
 import './components/ArticleList/ArticleList.scss';
 import './components/AlloneArticle/AlloneArticle.scss';
+import './components/AccountForms/AccountForms.scss';
 
 
 const root = document.querySelector('.root');

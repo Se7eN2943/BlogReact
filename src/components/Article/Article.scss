@@ -1,16 +1,12 @@
 @import '../../colors.scss';
 
 
+
 .article {
-    filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.15));
     width: 940px;
-    border-radius: 5px;
-    background-color: $articles-background;
-    display: flex;
     justify-content: space-between;
     padding: 15px;
     margin-bottom: 25px;
-
     &_tittle {
         width: 700px;
 

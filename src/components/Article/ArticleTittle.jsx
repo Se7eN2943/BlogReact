@@ -1,5 +1,5 @@
-import React, { useState, useContext } from 'react';
-import { Link, useParams } from 'react-router-dom'
+import React, { useState} from 'react';
+import { Link, useParams} from 'react-router-dom'
 
 
 const HeartOutlined = ({ liked }) => {
@@ -62,7 +62,7 @@ const ArticleTittle = (props) => {
         setLike(true)
         return setLikeCount(likeCount => likeCount += 1)
     }
-console.log(useParams())
+
     return (
         <div className="article_tittle">
             <div className="article_tittle__header">

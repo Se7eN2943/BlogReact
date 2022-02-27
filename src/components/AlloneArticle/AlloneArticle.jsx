@@ -8,13 +8,12 @@ import ArticleUser from '../Article/ArticleUser';
 
 const AlloneArticle = ({ article, getArticle }) => {
     const { slug } = useParams()
-    console.log(slug)
     useEffect(()=>{
         getArticle(slug)
     }, [])
     return (
         <main>
-            <div className="article  article-alone">
+            <div className="shadow-box  article-alone">
                 <div className="article-alone_header">
                     <ArticleTittle
                         author={article.author}
