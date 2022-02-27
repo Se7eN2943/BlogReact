@@ -1,5 +1,6 @@
-import React, { useState} from 'react';
-import { Link, useParams} from 'react-router-dom'
+import React, { useState } from 'react';
+import { connect } from 'react-redux'
+import { Link, useParams } from 'react-router-dom'
 
 
 const HeartOutlined = ({ liked }) => {
@@ -47,14 +48,14 @@ const Tags = ({ tag }) => {
 }
 
 const ArticleTittle = (props) => {
-    const { slug, title, description, favorited, favoritesCount, tagList, getArticle } = props
-
+    const { auth, slug, title, description, favorited, favoritesCount, tagList, getArticle } = props
     const [like, setLike] = useState(favorited)
     const [likeCount, setLikeCount] = useState(favoritesCount)
 
     const tags = tagList?.map((tag, i) => tag.length != 0 && < Tags tag={tag} key={i} />)
 
     const liked = () => {
+        if (!auth) return
         if (like) {
             setLike(false)
             return setLikeCount(likeCount => likeCount -= 1)
@@ -84,4 +85,11 @@ const ArticleTittle = (props) => {
     )
 }
 
-export default ArticleTittle
+
+const mapStateToProps = (state) => {
+    return {
+        auth: state.auth,
+    }
+}
+
+export default connect(mapStateToProps)(ArticleTittle)

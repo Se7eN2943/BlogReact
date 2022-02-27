@@ -12,12 +12,11 @@ export const setArticle = article => {
   };
 };
 
-// export const setTickets = (tickets) => {
-//   return {
-//     type: 'TICKETS',
-//     payload: tickets,
-//   };
-// };
+export const setLogOut = username => {
+  return {
+    type: 'LOGOUT'
+  };
+};
 
 // export const setSortFlag = (flag) => {
 //   return {

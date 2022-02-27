@@ -51,13 +51,19 @@ button {
         }
     }
 
-    &-spin-dot {
-        width: 3em;
-        height: 3em;
+    &-spin {
+        &-spinning {
+            display: block;
+        }
 
-        &-item {
-            width: 30px;
-            height: 30px;
+        &-dot {
+            width: 3em;
+            height: 3em;
+
+            &-item {
+                width: 30px;
+                height: 30px;
+            }
         }
     }
 

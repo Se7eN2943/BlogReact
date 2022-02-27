@@ -1,7 +1,9 @@
 const initialState = {
   articles: [],
   articlesCount: 0,
-  article: {}
+  article: {},
+  auth: true,
+  username:'John Doe',
 };
 
 const reducer = (state = initialState, {
@@ -20,12 +22,12 @@ const reducer = (state = initialState, {
         ...state,
         article: payload.article
       };
-      // case 'TICKETS':
-      //   return {
-      //     ...state,
-      //     tickets: state.tickets.concat(payload.tickets),
-      //     ticketsFlag: payload.stop,
-      //   };
+      case 'LOGOUT':
+        return {
+          ...state,
+          auth: false,
+          username:'',
+        };
       // case 'SORT':
       //   return {
       //     ...state,

@@ -9,23 +9,31 @@ import ArticleList from '../ArticleList/ArticleList'
 import AlloneArticle from '../Article/AlloneArticle'
 import SignIn from '../Forms/SignIn'
 import SingUp from '../Forms/SingUp'
-
-
+import Auth from '../hoc/Auth'
+import CreateArticle from '../Forms/CreateArticle'
+import EditProfile from '../Forms/EditProfile'
 
 // import EditArticle from '../Forms/EditArticle'
-// import CreateArticle from '../Forms/CreateArticle'
-// import EditProfile from '../Forms/EditProfile'
-
 
 const blog = new blogAPI();
 
 const App = ({ setArticles, setArticle, totalRes }) => {
 
     const [page, setPage] = useState(1)
+    const [load, setLoad] = useState(false)
 
-    const getAllArticles = (page) => blog.getArticles(page).then((articles => setArticles(articles)));
+    const getAllArticles = async (page) => {
+        setLoad(true)
+        await blog.getArticles(page).then((articles => setArticles(articles)))
+        setLoad(false)
+    };
 
-    const getArticle = (slug) => blog.getArticle(slug).then((article => setArticle(article)));
+    const getArticle = (slug) => {
+        setLoad(true)
+        blog.getArticle(slug).then((article => setArticle(article)));
+        setLoad(false)
+    };
+
 
     useEffect(async () => {
         await getAllArticles()
@@ -34,31 +42,36 @@ const App = ({ setArticles, setArticle, totalRes }) => {
     return (
         <>
             <Header />
-            {/*
-            <EditArticle />
-            <CreateArticle />
-            <EditProfile />
-            {/* <Spin /> */}
-            <Routes>
-                <Route path='/articles' element={<ArticleList getArticle={getArticle} />} />
-                <Route path='/' element={<Navigate to='/articles' replace />} />
-                <Route path='articles/:slug' element={<AlloneArticle getArticle={getArticle} />} />
-                <Route path='sign-in' element={<SignIn />} />
-                <Route path='sign-up' element={<SingUp />} />
-                <Route path='/' element={totalRes > 20 && <Pagination
-                    showSizeChanger={false}
-                    pageSize={20}
-                    onChange={page => {
-                        setPage(page)
-                        getAllArticles((page - 1) * 20)
-                    }}
-                    size="small"
-                    total={totalRes}
-                    current={page}
-                />} />
+            {/* <EditArticle /> */}
 
-            </Routes>
 
+
+            {load ? <Spin /> :
+                <Routes>
+                    <Route path='/articles' element={
+                        <>
+                            <ArticleList getArticle={getArticle} />
+                            {totalRes > 20 && !load && <Pagination
+                                showSizeChanger={false}
+                                pageSize={20}
+                                onChange={page => {
+                                    setPage(page)
+                                    getAllArticles((page - 1) * 20)
+                                }}
+                                size="small"
+                                total={totalRes}
+                                current={page}
+                            />}
+                        </>
+                    } />
+                    <Route path='/' element={<Navigate to='/articles' replace />} />
+                    <Route path='articles/:slug' element={<AlloneArticle getArticle={getArticle} />} />
+                    <Route path='sign-in' element={<SignIn />} />
+                    <Route path='sign-up' element={<SingUp />} />
+                    <Route path='profile' element={<EditProfile />} />
+                    <Route path='new-article' element={<CreateArticle />} />
+                </Routes>
+            }
         </>
     )
 }
