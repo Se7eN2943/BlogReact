@@ -1,6 +1,6 @@
 @import '../../colors.scss';
 
-.account-form {
+.form {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     color: $form-text-color;
@@ -33,10 +33,6 @@
         padding: 8px 0 8px 0;
         background: $blue;
         border-radius: 4px;
-
-        &:hover {
-            opacity: 0.8;
-        }
     }
 
     &_checkbox {
@@ -61,7 +57,8 @@
         font-size: 16px;
         line-height: 24px;
 
-        input {
+        input,
+        textarea {
             padding: 8px 12px 8px 12px;
             border: 1px solid $input-border;
             box-sizing: border-box;
@@ -86,5 +83,47 @@
         line-height: 28px;
         text-align: center;
         margin-bottom: 20px;
+    }
+}
+
+.article-form {
+    width: 940px;
+
+    textarea {
+        height: 170px;
+    }
+
+    &_input {
+        margin-bottom: 20px;
+    }
+
+    &_tag {
+        flex-direction: row;
+        margin-bottom: 5px;
+        margin-top: 5px;
+
+        &__input {
+            width: 300px;
+            margin-right: 17px;
+        }
+
+        button {
+            padding: 8px 27px 8px 27px;
+        }
+
+        .tag-delete {
+            color: $red;
+            border: 1px solid $red;
+            margin-right: 17px;
+        }
+
+        .tag-add {
+            color: $blue;
+            border: 1px solid $blue;
+        }
+    }
+    .form_submit{
+        width: 320px;
+        margin-top: 20px;
     }
 }

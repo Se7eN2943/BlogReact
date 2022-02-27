@@ -142,3 +142,8 @@ button {
     border: none;
     cursor: pointer;
 }
+
+textarea,
+input {
+    outline: none;
+}

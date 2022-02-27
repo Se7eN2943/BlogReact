@@ -6,11 +6,15 @@ import { setArticles, setArticle } from '../../actions'
 import blogAPI from '../../services'
 import Header from '../Header/Header'
 import ArticleList from '../ArticleList/ArticleList'
-import AlloneArticle from '../AlloneArticle/AlloneArticle'
+import AlloneArticle from '../Article/AlloneArticle'
 
 
 
-import EditProfile from '../AccountForms/EditProfile'
+import EditArticle from '../Forms/EditArticle'
+import CreateArticle from '../Forms/CreateArticle'
+import EditProfile from '../Forms/EditProfile'
+import SignIn from '../Forms/SignIn'
+import SingUp from '../Forms/SingUp'
 
 const blog = new blogAPI();
 
@@ -29,7 +33,11 @@ const App = ({ setArticles, setArticle, totalRes }) => {
     return (
         <>
             <Header />
+            <EditArticle />
+            <CreateArticle />
             <EditProfile />
+            <SignIn />
+            <SingUp />
             {/* <Spin /> */}
             {/* <Routes>
                 <Route path='/articles' element={<ArticleList getArticle={getArticle} />} />

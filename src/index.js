@@ -11,8 +11,7 @@ import './components/App/App.scss';
 import './components/Header/Header.scss';
 import './components/Article/Article.scss';
 import './components/ArticleList/ArticleList.scss';
-import './components/AlloneArticle/AlloneArticle.scss';
-import './components/AccountForms/AccountForms.scss';
+import './components/Forms/AccountForms.scss';
 
 
 const root = document.querySelector('.root');

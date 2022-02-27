@@ -20,4 +20,9 @@ header {
         margin-right: 19px;
         background-color: white;
     }
+
+    .sign-up-button {
+        color: $success-color;
+        border: 1px solid $success-color;
+    }
 }
