@@ -3,7 +3,10 @@ import { Checkbox } from 'antd';
 import { Link } from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import FormInput from './FormInputs/FormInput'
+import blogAPI from '../../services'
 import { connect } from 'react-redux'
+
+const registerAPI = new blogAPI()
 
 
 const SingUp = () => {
@@ -13,7 +16,16 @@ const SingUp = () => {
     const [checked, setChecked] = useState(false)
 
     const onSubmit = (data) => {
-        console.log(data);
+        const user = {
+            user: {
+                username: data.username,
+                email: data.email,
+                password: data.password
+            }
+        }
+        registerAPI.registerNewUser(user).then(res => console.log(res))
+
+
     };
 
     return (

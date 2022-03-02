@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Pagination, Spin } from 'antd';
 import { connect } from 'react-redux'
 import { Routes, Route, Navigate } from 'react-router-dom'
-import { setArticles, setArticle } from '../../actions'
+import { setArticles, setArticle } from '../../redux/actions'
 import blogAPI from '../../services'
 import Header from '../Header/Header'
 import ArticleList from '../ArticleList/ArticleList'
@@ -13,7 +13,7 @@ import Auth from '../hoc/Auth'
 import CreateArticle from '../Forms/CreateArticle'
 import EditProfile from '../Forms/EditProfile'
 
-import EditArticle from '../Forms/EditArticle'
+// import EditArticle from '../Forms/EditArticle'
 
 const blog = new blogAPI();
 
@@ -42,7 +42,7 @@ const App = ({ setArticles, setArticle, totalRes }) => {
     return (
         <>
             <Header />
-            <EditArticle />
+            {/* <EditArticle /> */}
 
             {load ? <Spin /> :
                 <Routes>

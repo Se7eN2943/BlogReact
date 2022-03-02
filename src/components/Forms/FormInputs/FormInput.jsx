@@ -14,7 +14,6 @@ const FormInput = forwardRef((props, ref) => {
             {errors && <div className="form_input_error">
                 {errors[name] && <span>{errors[name]?.message || 'The field is required'}</span>}
             </div>}
-
         </div>
     );
 });

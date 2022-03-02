@@ -3,7 +3,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import reducer from './reducer';
+import reducer from './redux/reducer';
 import App from './components/App/App';
 import 'antd/dist/antd.css';
 import './reset.scss';

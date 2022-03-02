@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { setLogOut } from '../../actions'
+import { setLogOut } from '../../redux/actions'
 import acc from './user_photo.png'
 
 const NonAuthHeader = () => {
