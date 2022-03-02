@@ -1,50 +1,100 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { Checkbox } from 'antd';
 import { Link } from 'react-router-dom'
+import { useForm } from "react-hook-form";
+import FormInput from './FormInput'
 import { connect } from 'react-redux'
 
 
 const SingUp = () => {
-    
+
+    const { register, handleSubmit, watch, formState: { errors, isValid } } = useForm({ mode: 'onBlur' });
+
+    const [checked, setChecked] = useState(false)
+
+    const onSubmit = (data) => {
+        console.log(data);
+    };
+
     return (
         <div className="form shadow-box">
             <h5>  Create new account </h5>
-            <form className='form_form' action="">
-                <div className="form_input">
-                    <label className="form_input__label" htmlFor="username">
-                        Username
-                        <input placeholder="Username" name='username' id='username' type="text" />
-                    </label>
-                </div>
-                <div className="form_input">
-                    <label className="form_input__label" htmlFor="email">
-                        Email address
-                        <input placeholder='Email address' name='email' id='email' type="email" />
-                    </label>
-                </div>
-                <div className="form_input">
-                    <label className="form_input__label" htmlFor="password">
-                        Password
-                        <input placeholder='Password' name='password' id='password' type="password" />
-                    </label>
-                </div>
-                <div className="form_input">
-                    <label className="form_input__label" htmlFor="repeatPassword">
-                        Repeat Password
-                        <input placeholder='Password' name='repeatPassword' id='repeatPassword' type="password" />
-                    </label>
-                </div>
+            <form className='form_form' onSubmit={handleSubmit(onSubmit)}>
+                <FormInput
+                    errors={errors}
+                    placeholder='Username'
+                    name='username'
+                    label='Username'
+                    {...register("username", {
+                        required: true
+                    })}
+                />
+                <FormInput
+                    errors={errors}
+                    placeholder='Email address'
+                    name='email'
+                    label='Email address'
+                    type='email'
+                    {...register("email", {
+                        required: true
+                    })}
+                />
+                <FormInput
+                    errors={errors}
+                    placeholder='Password'
+                    name='password'
+                    label='Password'
+                    type='password'
+                    {...register("password", {
+                        required: true,
+                        minLength: {
+                            value: 6,
+                            message: 'Your password needs to be at least 6 characters.'
+                        }
+                    })}
+                />
+                <FormInput
+                    errors={errors}
+                    placeholder='Password'
+                    name='repeatPassword'
+                    label='Repeat Password'
+                    type='password'
+                    {...register("repeatPassword", {
+                        required: true,
+                        minLength: {
+                            value: 6,
+                            message: 'Your password needs to be at least 6 characters.'
+                        },
+                        validate: value => value === watch("password") || 'Passwords must match'
+                    })}
+                />
                 <div className="form_line"></div>
                 <div className="form_checkbox">
-                    <Checkbox><div className="form_checkbox_label" >I agree to the processing of my personal information</div></Checkbox>
+
+                    <Checkbox onChange={e => setChecked(e.target.checked)}>
+                        <div className="form_checkbox_label" >I agree to the processing of my personal information</div>
+                    </Checkbox>
+
+
+                    <div className="form_input_error">
+                        {errors?.checkbox && <span>{errors?.checkbox?.message}</span>}
+                    </div>
                 </div>
-                <button className="form_submit" type="submit">Create</button>
+
+                <button
+                    className="form_submit"
+                    type="submit"
+                    disabled={!isValid && !checked}
+                    style={!checked ? { opacity: 0.5 } : { opacity: 1 }}
+                >
+                    Create
+                </button>
                 <div className="form_footer">
                     Already have an account?
                     <span> <Link to='/sign-in'>Sign In.</Link> </span>
                 </div>
-            </form>
-        </div>
+            </form >
+        </div >
     )
 }
 

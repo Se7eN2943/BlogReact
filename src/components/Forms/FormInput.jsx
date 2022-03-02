@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 
 const FormInput = forwardRef((props, ref) => {
-    const { name, label, errors, errorMessage, ...rest } = props
+    const { name, label, errors, errorMessage, ...other } = props
     return (
         <div className="form_input">
             <label className="form_input__label" htmlFor={name}>{label}</label>
@@ -9,17 +9,13 @@ const FormInput = forwardRef((props, ref) => {
                 style={errors[name] && { borderColor: '#F5222D' }}
                 name={name}
                 ref={ref}
-                {...rest}
+                {...other}
             />
             <div className="form_input_error">
-                {errors[name] && <span>{errors[name]?.message || errorMessage}</span>}
+                {errors[name] && <span>{errors[name]?.message || 'The field is required'}</span>}
             </div>
         </div>
     );
 });
 
 export default FormInput
-
-FormInput.defaultProps = {
-    errorMessage: 'The field is required'
-};
