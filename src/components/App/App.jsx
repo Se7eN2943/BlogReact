@@ -13,7 +13,7 @@ import Auth from '../hoc/Auth'
 import CreateArticle from '../Forms/CreateArticle'
 import EditProfile from '../Forms/EditProfile'
 
-// import EditArticle from '../Forms/EditArticle'
+import EditArticle from '../Forms/EditArticle'
 
 const blog = new blogAPI();
 
@@ -42,7 +42,7 @@ const App = ({ setArticles, setArticle, totalRes }) => {
     return (
         <>
             <Header />
-            {/* <EditArticle /> */}
+            <EditArticle />
 
             {load ? <Spin /> :
                 <Routes>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Checkbox } from 'antd';
 import { Link } from 'react-router-dom'
 import { useForm } from "react-hook-form";
-import FormInput from './FormInput'
+import FormInput from './FormInputs/FormInput'
 import { connect } from 'react-redux'
 
 

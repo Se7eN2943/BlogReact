@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { Checkbox } from 'antd';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-
+import TittleInput from './FormInputs/TittleInput'
 
 const Tag = () => {
 
@@ -16,32 +16,30 @@ const Tag = () => {
     )
 }
 
-
-
 const EditArticle = () => {
 
     return (
         <div className="form shadow-box article-form">
             <h5> Edit article </h5>
             <form className='form_form' action="">
-                <div className="form_input article-form_input">
-                    <label className="form_input__label" htmlFor="title">
-                        Title
-                        <input placeholder="Title" name='title' id='title' type="text" />
-                    </label>
-                </div>
-                <div className="form_input article-form_input">
-                    <label className="form_input__label" htmlFor="email">
-                        Short description
-                        <input placeholder='Title' name='shortDescription' id='shortDescription' type="text" />
-                    </label>
-                </div>
-                <div className="form_input article-form_input">
-                    <label className="form_input__label " htmlFor="text">
-                        Text
-                        <textarea placeholder='Text' name='text' id='text' type="text" />
-                    </label>
-                </div>
+                <TittleInput
+                    required
+                    placeholder='Title'
+                    name='title'
+                    label='Title'
+                />
+                <TittleInput
+                    required
+                    placeholder='Title'
+                    name='shortDescription'
+                    label='Short description'
+                />
+                <TittleInput
+                    required
+                    placeholder='Text'
+                    name='textarea'
+                    label='Text'
+                />
                 <div className="article-form_tags">
                     <label className="form_input__label article-form_tags__label">
                         Tags
