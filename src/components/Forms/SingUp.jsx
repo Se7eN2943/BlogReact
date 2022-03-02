@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import { Checkbox } from 'antd';
 import { Link } from 'react-router-dom'
-import { useForm } from "react-hook-form";
 import { connect } from 'react-redux'
 
 
 const SingUp = () => {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    
     return (
         <div className="form shadow-box">
             <h5>  Create new account </h5>

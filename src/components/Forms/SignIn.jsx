@@ -1,34 +1,50 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
+import { useForm } from "react-hook-form";
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import FormInput from './FormInput'
 
 
 const SingIn = () => {
 
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const onSubmit = (data) => {
+        console.log(data);
+    };
+
     return (
+
         <div className="form shadow-box">
             <h5> Sign In </h5>
-            <form className='form_form' action="">
-                <div className="form_input">
-                    <label className="form_input__label" htmlFor="email">
-                        Email address
-                        <input placeholder='Email address' name='email' id='email' type="email" />
-                    </label>
-                </div>
-                <div className="form_input">
-                    <label className="form_input__label" htmlFor="password">
-                        Password
-                    </label>
-                    <input placeholder='Password' name='password' id='password' type="password" />
-                </div>
-                <button className="form_submit" type="submit">Create</button>
+            <form className='form_form' onSubmit={handleSubmit(onSubmit)}>
+                <FormInput
+                    errors={errors}
+                    placeholder='Email address'
+                    name='email'
+                    label='Email address'
+                    type='email'
+                    {...register("email", {
+                        required: true
+                    })}
+                />
+                <FormInput
+                    errors={errors}
+                    placeholder='Password'
+                    name='password'
+                    label='Password'
+                    type='password'
+                    {...register("password", {
+                        required: true
+                    })}
+                />
+                <button className="form_submit" type="submit">Login</button>
                 <div className="form_footer">
                     Already have an account?
                     <span><Link to='/sign-up'>Sign Up.</Link></span>
                 </div>
             </form>
         </div>
-    )
+    );
 }
 
 // const mapStateToProps = (state) => {
