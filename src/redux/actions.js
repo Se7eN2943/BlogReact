@@ -12,9 +12,23 @@ export const setArticle = article => {
   };
 };
 
-export const setLogOut = username => {
+export const setLogOut = () => {
   return {
     type: 'LOGOUT'
+  };
+};
+
+export const setUserImg = img => {
+  return {
+    type: 'SETIMG',
+    payload: img
+  };
+};
+
+export const setSignIn = user => {
+  return {
+    type: 'SIGNIN',
+    payload: user
   };
 };
 

@@ -17,12 +17,51 @@ export default class blogAPI {
   };
 
   registerNewUser = async user => {
-    const res = await fetch(`${this.baseUrl}/users/`, {
+    try {
+      const res = await fetch(`${this.baseUrl}/users`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(user)
+      });
+      if (!res.ok) throw new Error('Что то пошло не так');
+      return await res.json();
+    } catch (err) {
+      console.err(err)
+    }
+
+  }
+
+  signInUser = async user => {
+    const res = await fetch(`${this.baseUrl}/users/login`, {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      },
       body: JSON.stringify(user)
     });
     if (!res.ok) throw new Error('Что то пошло не так');
     return await res.json();
   }
+
+  getUser = async token => {
+    const res = await fetch(`${this.baseUrl}/user`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+    });
+    if (!res.ok) throw new Error('Что то пошло не так');
+    return await res.json();
+  }
+
+  getUserProfile = async username => {
+    const res = await fetch(`${this.baseUrl}/profiles/${username}`);
+    if (!res.ok) throw new Error('Что то пошло не так');
+    return await res.json();
+  }
+
+
 
 }

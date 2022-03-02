@@ -1,9 +1,14 @@
+import defaultUserImg from '../components/user_photo.png'
+
 const initialState = {
   articles: [],
   articlesCount: 0,
   article: {},
-  auth: true,
-  username:'John Doe',
+  auth: false,
+  username: '',
+  image: '',
+  token:'',
+  email: ''
 };
 
 const reducer = (state = initialState, {
@@ -22,32 +27,26 @@ const reducer = (state = initialState, {
         ...state,
         article: payload.article
       };
-      case 'LOGOUT':
-        return {
-          ...state,
-          auth: false,
-          username:'',
-        };
-      // case 'SORT':
-      //   return {
-      //     ...state,
-      //     sortFlag: payload,
-      //   };
-      // case 'FILTER':
-      //   return {
-      //     ...state,
-      //     filterList: payload,
-      //   };
-      // case 'SLICED':
-      //   return {
-      //     ...state,
-      //     sliced: payload,
-      //   };
-      // case 'TICKETS_FLAG':
-      //   return {
-      //     ...state,
-      //     ticketsFlag: payload,
-      //   };
+    case 'LOGOUT':
+      return {
+        ...state,
+        auth: false,
+          username: '',
+      };
+    case 'SIGNIN':
+      return {
+        ...state,
+        auth: true,
+          username: payload.username,
+          token: payload.token,
+          email: payload.email,
+      };
+    case 'SETIMG':
+      return {
+        ...state,
+        image: payload,
+      };
+
     default:
       return state;
   }

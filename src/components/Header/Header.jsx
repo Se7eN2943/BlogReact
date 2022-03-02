@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { setLogOut } from '../../redux/actions'
-import acc from './user_photo.png'
 
 const NonAuthHeader = () => {
     return (
@@ -17,8 +16,7 @@ const NonAuthHeader = () => {
     )
 }
 
-const AuthHeader = ({ username, setLogOut }) => {
-
+const AuthHeader = ({ username, setLogOut,image }) => {
     return (
         <div className="autoris-block">
             <Link to='/new-article'>
@@ -28,7 +26,7 @@ const AuthHeader = ({ username, setLogOut }) => {
                 {username}
             </div>
             <div className="user-img">
-                <Link to='/profile'><img src={acc} alt="Profile IMG" /></Link>
+                <Link to='/profile'><img src={image} alt="Profile IMG" /></Link>
             </div>
             <Link onClick={() => setLogOut()} to='/'>
                 <button className='log-out-button color-button'>Log Out</button>
@@ -37,23 +35,25 @@ const AuthHeader = ({ username, setLogOut }) => {
     )
 }
 
-const Header = ({ auth, username, setLogOut }) => {
+const Header = ({ auth, username, setLogOut, image }) => {
 
     return (
         <header>
             <h6>
                 <Link to='/'>Realworld Blog</Link>
             </h6>
-            {auth ? <AuthHeader username={username} setLogOut={setLogOut} /> : <NonAuthHeader />}
+            {auth ? <AuthHeader image={image} username={username} setLogOut={setLogOut} /> : <NonAuthHeader />}
         </header>
     )
 }
 
 
 const mapStateToProps = (state) => {
+    console.log(state.image)
     return {
         auth: state.auth,
         username: state.username,
+        image: state.image
     }
 }
 
