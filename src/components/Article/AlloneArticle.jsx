@@ -28,6 +28,8 @@ const AlloneArticle = ({ article, getArticle }) => {
                         updatedAt={article.updatedAt}
                     />
                     <ArticleUser
+                        alone={true}
+                        slug={article.slug}
                         author={article.author}
                         createdAt={article.createdAt}
                     />

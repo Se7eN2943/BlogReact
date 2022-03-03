@@ -2,11 +2,11 @@ const initialState = {
   articles: [],
   articlesCount: 0,
   article: {},
-  auth: false,
-  username: '',
-  image: '',
-  token:'',
-  email: ''
+  auth: localStorage.getItem('auth') || '',
+  username: localStorage.getItem('username') || '',
+  image: localStorage.getItem('image') || '',
+  token: localStorage.getItem('token') || '',
+  email: localStorage.getItem('email') || '',
 };
 
 const reducer = (state = initialState, {

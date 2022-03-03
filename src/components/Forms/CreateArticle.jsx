@@ -47,10 +47,15 @@ const TagList = ({ tags, onDeleteTag }) => {
     )
 }
 
-const CreateArticle = ({token}) => {
+const CreateArticle = ({ token, article, editing }) => {
+    const { title, description, body, tagList, slug } = article
+    const defaultTagList = editing ? tagList : []
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const [tags, setTags] = useState([]);
+    const [tags, setTags] = useState(defaultTagList);
     const [errorMessage, setErrorMessage] = useState(false);
+    const [editTitle, setEditTitle] = useState(title);
+    const [editDescription, setEditDescription] = useState(description);
+    const [editBody, setEditBody] = useState(body);
 
     const onAddTag = tag => {
         if (tag.trim().length === 0) return setErrorMessage(true);
@@ -71,18 +76,22 @@ const CreateArticle = ({token}) => {
                 tagList: tags
             }
         }
-
-        createArticleAPI.createArticle(token, article).then(article => console.log(article))
-
+        if (editing) {
+            createArticleAPI.editArticle(token, article, slug).then(article => console.log(article))
+        } else {
+            createArticleAPI.createArticle(token, article).then(article => console.log(article))
+        }
     };
 
 
     return (
         <div className="form shadow-box article-form">
-            <h5> Create new article </h5>
+            <h5> {editing ? 'Edit article' : 'Create new article'}  </h5>
             <form className='form_form' onSubmit={handleSubmit(onSubmit)}>
 
                 <FormInput
+                    onInput={editing && (e => setEditTitle(e.target.value))}
+                    value={editing && editTitle}
                     errors={errors}
                     placeholder='Title'
                     label='Title'
@@ -92,6 +101,8 @@ const CreateArticle = ({token}) => {
                     })}
                 />
                 <FormInput
+                    onInput={editing && (e => setEditDescription(e.target.value))}
+                    value={editing && editDescription}
                     errors={errors}
                     placeholder='Title'
                     label='Short description'
@@ -101,6 +112,8 @@ const CreateArticle = ({token}) => {
                     })}
                 />
                 <FormInput
+                    onInput={editing && (e => setEditBody(e.target.value))}
+                    value={editing && editBody}
                     errors={errors}
                     placeholder='Text'
                     label='Text'
@@ -112,7 +125,7 @@ const CreateArticle = ({token}) => {
 
                 <TagList onDeleteTag={onDeleteTag} tags={tags} />
                 <NewTag setErrorMessage={setErrorMessage} onAddTag={onAddTag} errorMessage={errorMessage} />
-                <button className="form_submit" type="submit">Create</button>
+                <button className="form_submit" type="submit">{editing ? 'Send' : 'Create'}</button>
             </form>
         </div>
     )
@@ -120,7 +133,8 @@ const CreateArticle = ({token}) => {
 
 const mapStateToProps = (state) => {
     return {
-        token: state.token
+        token: state.token,
+        article: state.article,
     }
 }
 

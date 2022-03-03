@@ -7,6 +7,7 @@
     justify-content: space-between;
     padding: 15px;
     margin-bottom: 25px;
+
     &_tittle {
         width: 700px;
 
@@ -66,6 +67,12 @@
 
     &_user {
         display: flex;
+        margin-bottom: 30px;
+
+        &-wrapper {
+            display: flex;
+            flex-direction: column;
+        }
 
         &__title {
             margin-right: 12px;
@@ -104,7 +111,32 @@
     &_header {
         display: flex;
     }
-    &_body{
+
+    &_body {
         padding: 25px 40px 40px 0;
+    }
+}
+
+.article_user_buttons {
+    display: flex;
+    justify-content: end;
+
+    button {
+        padding: 6px 17px 3px 17px;
+    }
+
+    &__delete {
+        font-size: 14px;
+        line-height: 22px;
+        color: $red;
+        border: 1px solid $red;
+    }
+
+    &__edit {
+        font-size: 14px;
+        line-height: 22px;
+        color: $success-color;
+        border: 1px solid $success-color;
+        margin-left: 12px;
     }
 }

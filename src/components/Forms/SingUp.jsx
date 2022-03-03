@@ -9,7 +9,7 @@ import { setSignIn, setUserImg } from '../../redux/actions'
 
 const registerAPI = new blogAPI()
 
-const SingUp = ({ setSignIn, setUserImg }) => {
+const SingUp = ({ setSignIn, setUserImg, token, image }) => {
 
     const { register, handleSubmit, watch, formState: { errors, isValid } } = useForm({ mode: 'onBlur' });
 
@@ -28,6 +28,15 @@ const SingUp = ({ setSignIn, setUserImg }) => {
             setSignIn(res.user)
             registerAPI.getUserProfile(res.user.username).then(res => setUserImg(res.profile.image))
         })
+
+        localStorage.setItem('AuthData', {
+            username: data.username,
+            email: data.email,
+            token: token,
+            image: image,
+            auth: true
+        });
+        console.log(localStorage.getItem('AuthData'))
     };
 
     return (
@@ -118,7 +127,8 @@ const SingUp = ({ setSignIn, setUserImg }) => {
 
 const mapStateToProps = state => {
     return {
-        username: state.username,
+        token: state.token,
+        image: state.username,
     }
 }
 
