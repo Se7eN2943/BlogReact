@@ -1,49 +1,102 @@
-import React, { useEffect } from 'react';
-import { useForm } from "react-hook-form";
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
+import { useForm } from "react-hook-form";
 import { connect } from 'react-redux'
+import FormInput from './FormInputs/FormInput'
+import blogAPI from '../../services'
+import { setSignIn, setUserImg } from '../../redux/actions'
 
-const EditProfile = () => {
+const EditProfile = ({ username, email, image }) => {
+
+    const { register, handleSubmit, formState: { errors } } = useForm();
+
+    const [userName, setUserName] = useState(username)
+    const [userEmail, setUserEmail] = useState(email)
+    const [userAvatar, setUserAvatar] = useState(image)
+
+    const onChange = (e) => {
+            console.log(e.target.value)
+    }
+
+    const onSubmit = data => {
+        // const user = {
+        //     user: {
+        //         email: data.email,
+        //         password: data.password
+        //     }
+        // }
+
+        // signInAPI.signInUser(user).then(res => {
+        //     setSignIn(res.user)
+        //     signInAPI.getUserProfile(res.user.username).then(res => setUserImg(res.profile.image))
+        // })
+
+    };
 
     return (
         <div className="form shadow-box">
             <h5>  Edit Profile </h5>
-            <form className='form_form' action="">
-                <div className="form_input">
-                    <label className="form_input__label" htmlFor="username">
-                        Username
-                        <input placeholder="Username" name='username' id='username' type="text" />
-                    </label>
-                </div>
-                <div className="form_input">
-                    <label className="form_input__label" htmlFor="email">
-                        Email address
-                        <input placeholder='Email address' name='email' id='email' type="email" />
-                    </label>
-                </div>
-                <div className="form_input">
-                    <label className="form_input__label" htmlFor="password">
-                        New password
-                        <input placeholder='New password' name='password' id='password' type="password" />
-                    </label>
-                </div>
-                <div className="form_input">
-                    <label className="form_input__label" htmlFor="avatar">
-                        Avatar image
-                        <input placeholder='Avatar image' name='avatar' id='avatar' type="URL" />
-                    </label>
-                </div>
+            <form className='form_form' onSubmit={handleSubmit(onSubmit)}>
+
+                <FormInput
+                    onKeyUp={onChange}
+                    value={userName}
+                    errors={errors}
+                    placeholder='Username'
+                    name='username'
+                    label='Username'
+                    {...register("username", {
+                        required: true
+                    })}
+                />
+                <FormInput
+                    onKeyUp={onChange}
+                    value={userEmail}
+                    errors={errors}
+                    placeholder='Email address'
+                    name='email'
+                    label='Email address'
+                    type='email'
+                    {...register("email", {
+                        required: true
+                    })}
+                />
+                <FormInput
+                    onKeyUp={onChange}
+                    errors={errors}
+                    placeholder='New password'
+                    name='password'
+                    label='New password'
+                    type='password'
+                    {...register("password", {
+                        required: true
+                    })}
+                />
+                <FormInput
+                    onKeyUp={onChange}
+                    value={userAvatar}
+                    errors={errors}
+                    placeholder='Avatar image'
+                    name='avatar'
+                    label='Avatar image'
+                    type='URL'
+                    {...register("avatar", {
+                        required: true
+                    })}
+                />
+
                 <button className="form_submit" type="submit">Save</button>
             </form>
         </div>
     )
 }
 
-// const mapStateToProps = (state) => {
-//     return {
-//         article: state.article
-//     }
-// }
+const mapStateToProps = (state) => {
+    return {
+        username: state.username,
+        email: state.email,
+        image: state.image,
+    }
+}
 
-// export default connect(mapStateToProps)(AlloneArticle)
-export default EditProfile
+export default connect(mapStateToProps)(EditProfile)

@@ -12,7 +12,6 @@ const SingIn = ({setSignIn, token, setUserImg}) => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
-        const onSubmit2 = data => signInAPI.getUser(token).then(res => console.log(res));
         const onSubmit = data => {
             const user = {
                 user: {
@@ -27,7 +26,6 @@ const SingIn = ({setSignIn, token, setUserImg}) => {
             })
             
         };
-
 
     return (
         <div className="form shadow-box">
@@ -54,7 +52,6 @@ const SingIn = ({setSignIn, token, setUserImg}) => {
                     })}
                 />
                 <button className="form_submit" type="submit">Login</button>
-                <button className="form_submit" onClick={onSubmit2}>asd</button>
                 <div className="form_footer">
                     Already have an account?
                     <span><Link to='/sign-up'>Sign Up.</Link></span>
