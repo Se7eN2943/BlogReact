@@ -9,7 +9,7 @@ import ArticleList from '../ArticleList/ArticleList'
 import AlloneArticle from '../Article/AlloneArticle'
 import SignIn from '../Forms/SignIn'
 import SingUp from '../Forms/SingUp'
-import Auth from '../hoc/Auth'
+import Private from '../HOC/Private'
 import CreateArticle from '../Forms/CreateArticle'
 import EditProfile from '../Forms/EditProfile'
 
@@ -67,8 +67,17 @@ const App = ({ setArticles, setArticle, totalRes }) => {
                     <Route path='articles/:slug' element={<AlloneArticle getArticle={getArticle} />} />
                     <Route path='sign-in' element={<SignIn />} />
                     <Route path='sign-up' element={<SingUp />} />
-                    <Route path='profile' element={<EditProfile />} />
-                    <Route path='new-article' element={<CreateArticle />} />
+                    <Route path='profile' element={
+                        <Private>
+                            <EditProfile />
+                        </Private>
+                    } />
+                    <Route path='new-article' element={
+                        <Private>
+                            <CreateArticle />
+                        </Private>
+                    } />
+
                 </Routes>
             }
         </>

@@ -16,7 +16,12 @@ const NonAuthHeader = () => {
     )
 }
 
-const AuthHeader = ({ username, setLogOut,image }) => {
+const AuthHeader = ({ username, setLogOut, image }) => {
+
+    const logOut = () => {
+
+    }
+
     return (
         <div className="autoris-block">
             <Link to='/new-article'>

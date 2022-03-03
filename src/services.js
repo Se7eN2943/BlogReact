@@ -76,17 +76,16 @@ export default class blogAPI {
   }
 
   createArticle = async (token, article) => {
-    console.log(JSON.stringify(article))
-    const res = await fetch(`${this.baseUrl}/articles`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        'Authorization': `Bearer ${token}`
-      },
-      body: JSON.stringify(article)
-    });
-    if (!res.ok) throw new Error('Что то пошло не так');
-    return await res.json();
+      const res = await fetch(`${this.baseUrl}/articles`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          'Authorization': `Token ${token}`,
+        },
+        body: JSON.stringify(article)
+      });
+      if (!res.ok) throw new Error('Что то пошло не так');
+      return await res.json();
   }
 
 

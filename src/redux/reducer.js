@@ -1,5 +1,3 @@
-import defaultUserImg from '../components/user_photo.png'
-
 const initialState = {
   articles: [],
   articlesCount: 0,
