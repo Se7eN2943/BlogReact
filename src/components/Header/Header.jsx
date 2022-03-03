@@ -18,10 +18,6 @@ const NonAuthHeader = () => {
 
 const AuthHeader = ({ username, setLogOut, image }) => {
 
-    const logOut = () => {
-
-    }
-
     return (
         <div className="autoris-block">
             <Link to='/new-article'>
@@ -33,7 +29,7 @@ const AuthHeader = ({ username, setLogOut, image }) => {
             <div className="user-img">
                 <Link to='/profile'><img src={image} alt="Profile IMG" /></Link>
             </div>
-            <Link onClick={() => setLogOut()} to='/'>
+            <Link onClick={() => setLogOut()} to='/' >
                 <button className='log-out-button color-button'>Log Out</button>
             </Link>
         </div>

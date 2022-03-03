@@ -65,7 +65,7 @@ const CreateArticle = ({token}) => {
     const onSubmit = data => {
         const article = {
             article: {
-                tittle: data.title,
+                title: data.title,
                 description: data.shortDescription,
                 body: data.textarea,
                 tagList: tags
