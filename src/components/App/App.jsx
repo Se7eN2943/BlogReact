@@ -37,6 +37,7 @@ const App = ({ setArticles, setArticle, totalRes }) => {
 
     useEffect(async () => {
         await getAllArticles()
+        blog.getUser
     }, [])
 
     return (

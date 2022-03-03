@@ -49,7 +49,6 @@ const Header = ({ auth, username, setLogOut, image }) => {
 
 
 const mapStateToProps = (state) => {
-    console.log(state.image)
     return {
         auth: state.auth,
         username: state.username,

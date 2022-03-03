@@ -5,12 +5,18 @@ const FormInput = forwardRef((props, ref) => {
     return (
         <div className={`form_input ${inputClass}`} >
             <label className="form_input__label" htmlFor={name}>{label}</label>
-            <input
-                style={errors[name] && { borderColor: '#F5222D' }}
-                name={name}
-                ref={ref}
-                {...other}
-            />
+            {name === 'textarea'
+                ? <textarea
+                    style={errors[name] && { borderColor: '#F5222D' }}
+                    name={name}
+                    ref={ref}
+                    {...other} />
+                : <input
+                    style={errors[name] && { borderColor: '#F5222D' }}
+                    name={name}
+                    ref={ref}
+                    {...other}
+                />}
             {errors && <div className="form_input_error">
                 {errors[name] && <span>{errors[name]?.message || 'The field is required'}</span>}
             </div>}

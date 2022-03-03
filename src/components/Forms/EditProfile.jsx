@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import { connect } from 'react-redux'
-import FormInput from './FormInputs/FormInput'
+import FormInput from './FormInput'
 import blogAPI from '../../services'
 import { setSignIn, setUserImg } from '../../redux/actions'
 
-const EditProfile = ({ username, email, image }) => {
+const editProfileAPI = new blogAPI()
+
+const EditProfile = ({ username, email, image, token, setSignIn, setUserImg }) => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -14,23 +16,27 @@ const EditProfile = ({ username, email, image }) => {
     const [userEmail, setUserEmail] = useState(email)
     const [userAvatar, setUserAvatar] = useState(image)
 
-    const onChange = (e) => {
-            console.log(e.target.value)
-    }
-
     const onSubmit = data => {
-        // const user = {
-        //     user: {
-        //         email: data.email,
-        //         password: data.password
-        //     }
-        // }
 
-        // signInAPI.signInUser(user).then(res => {
-        //     setSignIn(res.user)
-        //     signInAPI.getUserProfile(res.user.username).then(res => setUserImg(res.profile.image))
-        // })
+        const user = {
+            user: {
+                username: data.username,
+                email: data.email,
+                password: data.password,
+                image: data.avatar
+            }
+        }
 
+        editProfileAPI.putUserProfile(token, user).then(({ user }) => {
+            console.log(user);
+            const putUser = {
+                username: user.username,
+                email: user.email,
+                token: user.token
+            }
+            setSignIn(putUser)
+            setUserImg(user.image)
+        })
     };
 
     return (
@@ -39,7 +45,7 @@ const EditProfile = ({ username, email, image }) => {
             <form className='form_form' onSubmit={handleSubmit(onSubmit)}>
 
                 <FormInput
-                    onKeyUp={onChange}
+                    onInput={e => setUserName(e.target.value)}
                     value={userName}
                     errors={errors}
                     placeholder='Username'
@@ -50,7 +56,7 @@ const EditProfile = ({ username, email, image }) => {
                     })}
                 />
                 <FormInput
-                    onKeyUp={onChange}
+                    onInput={e => setUserEmail(e.target.value)}
                     value={userEmail}
                     errors={errors}
                     placeholder='Email address'
@@ -62,18 +68,25 @@ const EditProfile = ({ username, email, image }) => {
                     })}
                 />
                 <FormInput
-                    onKeyUp={onChange}
                     errors={errors}
                     placeholder='New password'
                     name='password'
                     label='New password'
                     type='password'
                     {...register("password", {
-                        required: true
+                        required: true,
+                        minLength: {
+                            value: 6,
+                            message: 'Your password needs to be at least 6 characters.'
+                        },
+                        maxLength: {
+                            value: 40,
+                            message: 'Your username must be no more than 40 characters.'
+                        }
                     })}
                 />
                 <FormInput
-                    onKeyUp={onChange}
+                    onInput={e => setUserAvatar(e.target.value)}
                     value={userAvatar}
                     errors={errors}
                     placeholder='Avatar image'
@@ -81,7 +94,8 @@ const EditProfile = ({ username, email, image }) => {
                     label='Avatar image'
                     type='URL'
                     {...register("avatar", {
-                        required: true
+                        required: true,
+                        pattern: /.jpg$|.png$/i
                     })}
                 />
 
@@ -96,7 +110,8 @@ const mapStateToProps = (state) => {
         username: state.username,
         email: state.email,
         image: state.image,
+        token: state.token
     }
 }
 
-export default connect(mapStateToProps)(EditProfile)
+export default connect(mapStateToProps, { setSignIn, setUserImg })(EditProfile)

@@ -48,7 +48,7 @@ export default class blogAPI {
   getUser = async token => {
     const res = await fetch(`${this.baseUrl}/user`, {
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json;charset=utf-8',
         'Authorization': `Bearer ${token}`
       },
     });
@@ -58,6 +58,33 @@ export default class blogAPI {
 
   getUserProfile = async username => {
     const res = await fetch(`${this.baseUrl}/profiles/${username}`);
+    if (!res.ok) throw new Error('Что то пошло не так');
+    return await res.json();
+  }
+
+  putUserProfile = async (token, user) => {
+    const res = await fetch(`${this.baseUrl}/user`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify(user)
+    });
+    if (!res.ok) throw new Error('Что то пошло не так');
+    return await res.json();
+  }
+
+  createArticle = async (token, article) => {
+    console.log(JSON.stringify(article))
+    const res = await fetch(`${this.baseUrl}/articles`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify(article)
+    });
     if (!res.ok) throw new Error('Что то пошло не так');
     return await res.json();
   }

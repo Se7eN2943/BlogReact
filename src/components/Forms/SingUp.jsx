@@ -3,7 +3,7 @@ import { Checkbox } from 'antd';
 import { Link } from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import { connect } from 'react-redux'
-import FormInput from './FormInputs/FormInput'
+import FormInput from './FormInput'
 import blogAPI from '../../services'
 import { setSignIn, setUserImg } from '../../redux/actions'
 
@@ -42,8 +42,8 @@ const SingUp = ({ setSignIn, setUserImg }) => {
                     {...register("username", {
                         required: true,
                         minLength: {
-                            value: 6,
-                            message: 'Your username needs to be at least 6 characters.'
+                            value: 3,
+                            message: 'Your username needs to be at least 3 characters.'
                         },
                         maxLength: {
                             value: 20,
@@ -72,6 +72,10 @@ const SingUp = ({ setSignIn, setUserImg }) => {
                         minLength: {
                             value: 6,
                             message: 'Your password needs to be at least 6 characters.'
+                        },
+                        maxLength: {
+                            value: 40,
+                            message: 'Your username must be no more than 40 characters.'
                         }
                     })}
                 />
@@ -99,7 +103,7 @@ const SingUp = ({ setSignIn, setUserImg }) => {
                     className="form_submit"
                     type="submit"
                     disabled={!isValid && !checked}
-                    style={!checked ? { opacity: 0.5 } : { opacity: 1 }}
+                    style={!(checked && isValid) ? { opacity: 0.5 } : { opacity: 1 }}
                 >
                     Create
                 </button>

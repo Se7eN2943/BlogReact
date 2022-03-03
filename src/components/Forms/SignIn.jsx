@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import FormInput from './FormInputs/FormInput'
+import FormInput from './FormInput'
 import blogAPI from '../../services'
 import { setSignIn, setUserImg } from '../../redux/actions'
 

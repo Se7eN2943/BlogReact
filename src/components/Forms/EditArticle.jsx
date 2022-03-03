@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import TittleInput from './FormInputs/TittleInput'
 
 
+
 const Tag = () => {
 
     return (
@@ -18,6 +19,7 @@ const Tag = () => {
 }
 
 const EditArticle = () => {
+    
 
     return (
         <div className="form shadow-box article-form">
