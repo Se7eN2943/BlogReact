@@ -44,9 +44,9 @@ const AuthHeader = ({ username, setLogOut, image }) => {
 
 const Header = ({ auth, username, setLogOut, image, getAllArticles }) => {
     return (
-        <header onClick={getAllArticles}>
+        <header>
             <Link to='/articles'>
-                <h6>Realworld Blog</h6>
+                <h6 onClick={getAllArticles}>Realworld Blog</h6>
             </Link>
             {auth ? <AuthHeader getAllArticles={getAllArticles} image={image} username={username} setLogOut={setLogOut} /> : <NonAuthHeader />}
         </header>

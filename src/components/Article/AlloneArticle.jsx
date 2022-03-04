@@ -1,19 +1,11 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux'
-import { useParams } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import ArticleTittle from './ArticleTittle';
 import ArticleUser from './ArticleUser';
 
-const AlloneArticle = ({ article, getArticle, token, getAllArticles }) => {
-    
-    const { slug } = useParams()
-
-    useEffect(() => {
-        getArticle(slug, token)
-    }, [])
-
+const AlloneArticle = ({ article, getAllArticles }) => {
     return (
         <main>
             <div className="article shadow-box article-alone">
@@ -29,6 +21,7 @@ const AlloneArticle = ({ article, getArticle, token, getAllArticles }) => {
                         tagList={article.tagList}
                         title={article.title}
                         updatedAt={article.updatedAt}
+                        alone={true}
                     />
                     <ArticleUser
                         favorited={article.favorited}
@@ -37,7 +30,6 @@ const AlloneArticle = ({ article, getArticle, token, getAllArticles }) => {
                         slug={article.slug}
                         author={article.author}
                         createdAt={article.createdAt}
-                        getArticle={getArticle}
                         getAllArticles={getAllArticles}
                     />
                 </div>

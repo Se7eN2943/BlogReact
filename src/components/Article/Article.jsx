@@ -13,7 +13,7 @@ const Article = props => {
                 tagList={props.tagList}
                 title={props.title}
                 updatedAt={props.updatedAt}
-                getArticle={props.getArticle}
+                getOneArticle={props.getOneArticle}
             />
             <ArticleUser
                 author={props.author}

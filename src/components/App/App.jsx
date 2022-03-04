@@ -21,29 +21,30 @@ const App = ({ setArticles, setArticle, totalRes, token }) => {
     const [page, setPage] = useState(1)
     const [load, setLoad] = useState(false)
     const [onLoad, setOnLoad] = useState(true)
-    
-    const getAllArticles = async (page) => {
+
+    const getAllArticles = async page => {
         setLoad(true)
         await blog.getArticles(page, token).then((articles => {
             if (!articles) return setOnLoad(false)
             setArticles(articles)
             setOnLoad(true)
         }))
-        setLoad(false)
+        return setLoad(false)
     };
 
-    const getArticle = (slug, token) => {
+    const getOneArticle = async (slug, token) => {
         setLoad(true)
-        blog.getArticle(slug, token).then((article => {
+        await blog.getArticle(slug, token).then((article => {
             if (!article) return setOnLoad(false)
             setArticle(article)
             setOnLoad(true)
         }));
-        setLoad(false)
+        return setLoad(false)
     };
 
-    useEffect(async () => {
-        await getAllArticles()
+    useEffect(() => {
+        getAllArticles()
+        getOneArticle('a-vhwllo', token)
     }, [])
 
     return (
@@ -59,7 +60,7 @@ const App = ({ setArticles, setArticle, totalRes, token }) => {
                                     description="info Description info Description info Description"
                                     type="info"
                                 />
-                                : <ArticleList getArticle={getArticle} />}
+                                : <ArticleList getOneArticle={getOneArticle} />}
                             {totalRes > 20 && !load && <Pagination
                                 showSizeChanger={false}
                                 pageSize={20}
@@ -82,7 +83,7 @@ const App = ({ setArticles, setArticle, totalRes, token }) => {
                                     description="info Description info Description info Description"
                                     type="info"
                                 />
-                                : <AlloneArticle getAllArticles={getAllArticles} getArticle={getArticle} />}
+                                : <AlloneArticle getAllArticles={getAllArticles} getOneArticle={getOneArticle} />}
                         </>
                     } />
                     <Route path='sign-in' element={

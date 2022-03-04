@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux'
 import Article from '../Article/Article';
 
-const ArticleList = ({ articles, getArticle}) => {
+const ArticleList = ({ articles, getOneArticle}) => {
 
     const elements = articles.map(article => {
         return <Article
@@ -15,9 +15,9 @@ const ArticleList = ({ articles, getArticle}) => {
             tagList={article.tagList}
             title={article.title}
             updatedAt={article.updatedAt}
-            getArticle={getArticle}
             author={article.author}
             createdAt={article.createdAt}
+            getOneArticle={getOneArticle}
         />
     })
 

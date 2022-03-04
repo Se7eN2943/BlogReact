@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
-import { Link, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import blogAPI from '../../services'
 
 const blog = new blogAPI()
@@ -51,27 +51,32 @@ const Tags = ({ tag }) => {
 
 const ArticleTittle = (props) => {
 
-    const { auth, slug, title, description, favorited, favoritesCount, tagList, token } = props
+    const { auth, slug, title, description, favorited, favoritesCount, tagList, token, getOneArticle, alone } = props
     const [like, setLike] = useState(favorited)
     const [likeCount, setLikeCount] = useState(favoritesCount)
     const tags = tagList?.map((tag, i) => tag.length != 0 && < Tags tag={tag} key={i} />)
 
+    useEffect(() => {
+        !auth && setLike(false)
+    }, [auth])
+
     const liked = () => {
-        // if (!auth) return
-        // if (like) {
-        //     blog.favorite(token, slug, 'DELETE')
-        //     setLike(false)
-        //     return setLikeCount(likeCount => likeCount -= 1)
-        // }
-        // setLike(true)
-        // blog.favorite(token, slug, 'POST').then(a => console.log(a.json()))
-        // return setLikeCount(likeCount => likeCount += 1)
+        if (!auth) return
+        if (like) {
+            blog.favorite(token, slug, 'DELETE')
+            setLike(false)
+            setLikeCount(likeCount => likeCount -= 1)
+        } else {
+            blog.favorite(token, slug, 'POST')
+            setLike(true)
+            setLikeCount(likeCount => likeCount += 1)
+        }
     }
 
     return (
         <div className="article_tittle">
             <div className="article_tittle__header">
-                <h5 onClick={useParams().slug && null}>
+                <h5 onClick={!alone ? () => getOneArticle(slug, token) : null}>
                     <Link to={`/articles/${slug}`}>{title}</Link>
                 </h5>
                 {like ? <HeartFilled liked={liked} /> : <HeartOutlined liked={liked} />}
