@@ -79,11 +79,8 @@ time,
 mark,
 audio,
 video {
-    margin: 0;
-    padding: 0;
     border: 0;
     font-size: 100%;
-    font: inherit;
     color: inherit;
     text-decoration: inherit;
     vertical-align: baseline;
@@ -94,23 +91,6 @@ a:hover {
     text-decoration: inherit;
 }
 
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-    display: block;
-}
-
-body {
-    line-height: 1;
-}
 
 ol,
 ul {
@@ -140,11 +120,6 @@ q {
     }
 }
 
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
 button {
     border: none;
     cursor: pointer;
@@ -153,4 +128,8 @@ button {
 textarea,
 input {
     outline: none;
+}
+
+h6{
+    margin: 0;
 }

@@ -57,15 +57,15 @@ const ArticleTittle = (props) => {
     const tags = tagList?.map((tag, i) => tag.length != 0 && < Tags tag={tag} key={i} />)
 
     const liked = () => {
-        if (!auth) return
-        if (like) {
-            blog.favorite(token, slug, 'DELETE')
-            setLike(false)
-            return setLikeCount(likeCount => likeCount -= 1)
-        }
-        setLike(true)
-        blog.favorite(token, slug, 'POST').then(a => console.log(a.json()))
-        return setLikeCount(likeCount => likeCount += 1)
+        // if (!auth) return
+        // if (like) {
+        //     blog.favorite(token, slug, 'DELETE')
+        //     setLike(false)
+        //     return setLikeCount(likeCount => likeCount -= 1)
+        // }
+        // setLike(true)
+        // blog.favorite(token, slug, 'POST').then(a => console.log(a.json()))
+        // return setLikeCount(likeCount => likeCount += 1)
     }
 
     return (

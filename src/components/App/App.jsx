@@ -10,6 +10,7 @@ import AlloneArticle from '../Article/AlloneArticle'
 import SignIn from '../Forms/SignIn'
 import SingUp from '../Forms/SingUp'
 import Private from '../HOC/Private'
+import OnAutoris from '../HOC/OnAutoris'
 import CreateArticle from '../Forms/CreateArticle'
 import EditProfile from '../Forms/EditProfile'
 import EditArticle from '../Forms/EditArticle'
@@ -43,8 +44,6 @@ const App = ({ setArticles, setArticle, totalRes, token }) => {
     return (
         <>
             <Header getAllArticles={getAllArticles} />
-            
-
             {load ? <Spin /> :
                 <Routes>
                     <Route path='/articles' element={
@@ -65,9 +64,21 @@ const App = ({ setArticles, setArticle, totalRes, token }) => {
                     } />
                     <Route path='/' element={<Navigate to='/articles' replace />} />
                     <Route path='articles/:slug' element={<AlloneArticle getArticle={getArticle} />} />
-                    <Route path='sign-in' element={<SignIn />} />
-                    <Route path='articles/:slug/edit' element={<EditArticle />} />
-                    <Route path='sign-up' element={<SingUp />} />
+                    <Route path='sign-in' element={
+                        <OnAutoris>
+                            <SignIn />
+                        </OnAutoris>
+                    } />
+                    <Route path='articles/:slug/edit' element={
+                        <Private>
+                            <EditArticle />
+                        </Private>
+                    } />
+                    <Route path='sign-up' element={
+                        <OnAutoris>
+                            <SingUp />
+                        </OnAutoris>
+                    } />
                     <Route path='profile' element={
                         <Private>
                             <EditProfile />
@@ -78,7 +89,6 @@ const App = ({ setArticles, setArticle, totalRes, token }) => {
                             <CreateArticle />
                         </Private>
                     } />
-
                 </Routes>
             }
         </>

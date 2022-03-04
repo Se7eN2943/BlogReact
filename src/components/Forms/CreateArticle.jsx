@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import FormInput from './FormInput'
 import blogAPI from '../../services'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 const createArticleAPI = new blogAPI()
@@ -51,6 +51,7 @@ const CreateArticle = ({ token, article, editing }) => {
     const defaultTagList = editing ? tagList : []
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [tags, setTags] = useState(defaultTagList);
+    const navigate = useNavigate()
     const [errorMessage, setErrorMessage] = useState(false);
     const [editTitle, setEditTitle] = useState(title);
     const [editDescription, setEditDescription] = useState(description);
@@ -76,9 +77,9 @@ const CreateArticle = ({ token, article, editing }) => {
             }
         }
         if (editing) {
-            createArticleAPI.editArticle(token, article, slug).then(article => console.log(article))
+            createArticleAPI.editArticle(token, article, slug).then(article => navigate(`/articles/${article.article.slug}`))
         } else {
-            createArticleAPI.createArticle(token, article).then(article => console.log(article))
+            createArticleAPI.createArticle(token, article).then(article => navigate(`/articles/${article.article.slug}`))
         }
     };
 

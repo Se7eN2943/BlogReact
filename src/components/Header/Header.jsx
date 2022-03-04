@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { setLogOut } from '../../redux/actions'
 
@@ -16,9 +16,9 @@ const NonAuthHeader = () => {
     )
 }
 
-const AuthHeader = ({ username, setLogOut, image, getAllArticles }) => {
+const AuthHeader = ({ username, setLogOut, image }) => {
 
-
+    const navigate = useNavigate()
 
     return (
         <div className="autoris-block">
@@ -34,7 +34,7 @@ const AuthHeader = ({ username, setLogOut, image, getAllArticles }) => {
             <Link onClick={() => {
                 localStorage.clear()
                 setLogOut()
-                // getAllArticles()
+                navigate('/articles')
             }} to='/' >
                 <button className='log-out-button color-button'>Log Out</button>
             </Link>

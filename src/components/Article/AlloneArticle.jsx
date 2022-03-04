@@ -37,6 +37,7 @@ const AlloneArticle = ({ article, getArticle, token }) => {
                     />
                 </div>
                 <div className="article-alone_body">
+                    
                     <ReactMarkdown children={article.body} remarkPlugins={[remarkGfm]} />
                 </div>
             </div>

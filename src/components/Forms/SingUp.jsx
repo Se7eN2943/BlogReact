@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Checkbox } from 'antd';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import { connect } from 'react-redux'
 import FormInput from './FormInput'
@@ -11,7 +11,7 @@ import setLocalHost from '../../utiles'
 const blog = new blogAPI()
 
 const SingUp = ({ setSignIn, setUserImg, username, email, token, image, auth }) => {
-
+    const navigate = useNavigate()
     const { register, handleSubmit, watch, formState: { errors, isValid } } = useForm({ mode: 'onBlur' });
 
     const [checked, setChecked] = useState(false)
@@ -31,6 +31,8 @@ const SingUp = ({ setSignIn, setUserImg, username, email, token, image, auth }) 
         })
 
         setLocalHost(username, email, token, image, auth)
+
+        navigate('/articles')
     };
 
     return (

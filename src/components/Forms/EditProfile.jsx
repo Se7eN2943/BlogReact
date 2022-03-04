@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import { connect } from 'react-redux'
 import FormInput from './FormInput'
@@ -15,7 +15,7 @@ const EditProfile = ({ username, email, image, token, setSignIn, setUserImg }) =
     const [userName, setUserName] = useState(username)
     const [userEmail, setUserEmail] = useState(email)
     const [userAvatar, setUserAvatar] = useState(image)
-
+    const navigate = useNavigate()
     const onSubmit = data => {
 
         const user = {
@@ -28,7 +28,6 @@ const EditProfile = ({ username, email, image, token, setSignIn, setUserImg }) =
         }
 
         blog.putUserProfile(token, user).then(({ user }) => {
-            console.log(user);
             const putUser = {
                 username: user.username,
                 email: user.email,
@@ -36,6 +35,7 @@ const EditProfile = ({ username, email, image, token, setSignIn, setUserImg }) =
             }
             setSignIn(putUser)
             setUserImg(user.image)
+            navigate('/articles')
         })
     };
 
@@ -98,7 +98,6 @@ const EditProfile = ({ username, email, image, token, setSignIn, setUserImg }) =
                         pattern: /.jpg$|.png$/i
                     })}
                 />
-
                 <button className="form_submit" type="submit">Save</button>
             </form>
         </div>
