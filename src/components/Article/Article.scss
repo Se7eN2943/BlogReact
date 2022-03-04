@@ -7,14 +7,17 @@
     justify-content: space-between;
     padding: 15px;
     margin-bottom: 25px;
+    box-sizing: border-box;
 
     &_tittle {
         width: 700px;
+        box-sizing: border-box;
 
         &__header {
             display: flex;
             align-items: center;
             margin-bottom: 5px;
+            box-sizing: border-box;
 
             h5 {
                 cursor: pointer;
@@ -23,6 +26,7 @@
                 color: $blue;
                 margin-right: 13px;
                 max-width: 600px;
+                box-sizing: border-box;
             }
 
             .heart {
@@ -44,7 +48,9 @@
 
         &__tags {
             display: flex;
+            flex-wrap: wrap;
             margin-bottom: 5px;
+            box-sizing: border-box;
 
             .tag {
                 color: $text-color-secondary;
@@ -55,6 +61,7 @@
                 box-sizing: border-box;
                 border-radius: 2px;
                 margin-right: 8px;
+                max-width: 600px;
             }
         }
 

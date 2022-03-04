@@ -86,7 +86,7 @@ const CreateArticle = ({ token, article, editing }) => {
         if (editing) {
             createArticleAPI.editArticle(token, article, slug).then(() => navigate(-1))
         } else {
-            createArticleAPI.createArticle(token, article).then(article => navigate(`/articles/${article.article.slug}`))
+            createArticleAPI.createArticle(token, article).then(article => navigate(`/articles`))
         }
     };
 
