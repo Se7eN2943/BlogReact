@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import blogAPI from '../../services'
 import defaultPhoto from './default_photo.png'
 
@@ -8,10 +8,13 @@ const blog = new blogAPI()
 
 const ArticleUser = props => {
     const { author, createdAt, username, slug, alone, token } = props
-
+    const navigate = useNavigate()
     const delArticle = () => {
 
-        blog.delArticle(token, slug).then(then => console.log(then))
+        blog.delArticle(token, slug)
+        blog.getArticles(0, token)
+
+        navigate('/articles')
     }
 
     return (

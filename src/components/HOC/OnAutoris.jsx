@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 
 const OnAutoris = ({ children, auth }) => {
     const location = useLocation()
-    if (auth) return <Navigate to='/articles' state={{ goingFrom: location }} />
+    const fromPage = location?.state?.goingFrom?.pathname || '/articles'
+    if (auth) return <Navigate to={fromPage} state={{ goingFrom: location }} />
     return children
 }
 

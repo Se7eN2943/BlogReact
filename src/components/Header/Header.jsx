@@ -34,7 +34,7 @@ const AuthHeader = ({ username, setLogOut, image }) => {
             <Link onClick={() => {
                 localStorage.clear()
                 setLogOut()
-                navigate('/articles')
+                navigate('/articles', {replace: true})
             }} to='/' >
                 <button className='log-out-button color-button'>Log Out</button>
             </Link>

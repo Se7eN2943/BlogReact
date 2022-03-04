@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import FormInput from './FormInput'
 import blogAPI from '../../services'
@@ -10,7 +10,6 @@ import setLocalHost from '../../utiles'
 const blog = new blogAPI()
 
 const SingIn = ({ setSignIn, setUserImg, username, email, token, image, auth }) => {
-    const navigate = useNavigate()
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = async data => {
@@ -27,7 +26,6 @@ const SingIn = ({ setSignIn, setUserImg, username, email, token, image, auth }) 
         })
 
         setLocalHost(username, email, token, image, auth)
-        navigate('/articles')
     };
 
     return (
