@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Checkbox } from 'antd';
-import { Link, useNavigate} from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import { connect } from 'react-redux'
 import FormInput from './FormInput'
@@ -29,8 +29,13 @@ const SingUp = ({ setSignIn, setUserImg }) => {
             const { username, token, email } = res.user
             setSignIn(res.user)
             blog.getUserProfile(username).then(res => {
-                setLocalHost(username, email, token, true, res.profile.image)
-                setUserImg(res.profile.image)
+                if (!res) {
+                    setLocalHost(username, email, token, true, '')
+                    setUserImg('')
+                } else {
+                    setLocalHost(username, email, token, true, res.profile.image)
+                    setUserImg(res.profile.image)
+                }
             })
         })
 

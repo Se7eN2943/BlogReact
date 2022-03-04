@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Pagination, Spin } from 'antd';
+import { Pagination, Spin, Alert } from 'antd';
 import { connect } from 'react-redux'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { setArticles, setArticle } from '../../redux/actions'
@@ -15,27 +15,33 @@ import CreateArticle from '../Forms/CreateArticle'
 import EditProfile from '../Forms/EditProfile'
 import EditArticle from '../Forms/EditArticle'
 
-
-
 const blog = new blogAPI();
 
 const App = ({ setArticles, setArticle, totalRes, token }) => {
 
     const [page, setPage] = useState(1)
     const [load, setLoad] = useState(false)
+    const [onLoad, setOnLoad] = useState(true)
 
     const getAllArticles = async (page) => {
         setLoad(true)
-        await blog.getArticles(page, token).then((articles => setArticles(articles)))
+        await blog.getArticles(page, token).then((articles => {
+            if (!articles) return setOnLoad(false)
+            setArticles(articles)
+            setOnLoad(true)
+        }))
         setLoad(false)
     };
 
     const getArticle = (slug, token) => {
         setLoad(true)
-        blog.getArticle(slug, token).then((article => setArticle(article)));
+        blog.getArticle(slug, token).then((article => {
+            if (!article) return setOnLoad(false)
+            setArticle(article)
+            setOnLoad(true)
+        }));
         setLoad(false)
     };
-
 
     useEffect(async () => {
         await getAllArticles()
@@ -48,7 +54,13 @@ const App = ({ setArticles, setArticle, totalRes, token }) => {
                 <Routes>
                     <Route path='/articles' element={
                         <>
-                            <ArticleList  getArticle={getArticle} />
+                            {!onLoad
+                                ? <Alert
+                                    message="info Text"
+                                    description="info Description info Description info Description"
+                                    type="info"
+                                />
+                                : <ArticleList getArticle={getArticle} />}
                             {totalRes > 20 && !load && <Pagination
                                 showSizeChanger={false}
                                 pageSize={20}
@@ -63,7 +75,17 @@ const App = ({ setArticles, setArticle, totalRes, token }) => {
                         </>
                     } />
                     <Route path='/' element={<Navigate to='/articles' replace />} />
-                    <Route path='articles/:slug' element={<AlloneArticle getAllArticles={getAllArticles} getArticle={getArticle} />} />
+                    <Route path='articles/:slug' element={
+                        <>
+                            {!onLoad
+                                ? <Alert
+                                    message="info Text"
+                                    description="info Description info Description info Description"
+                                    type="info"
+                                />
+                                : <AlloneArticle getAllArticles={getAllArticles} getArticle={getArticle} />}
+                        </>
+                    } />
                     <Route path='sign-in' element={
                         <OnAutoris>
                             <SignIn />

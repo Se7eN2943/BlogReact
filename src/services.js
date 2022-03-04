@@ -11,7 +11,7 @@ export default class blogAPI {
         'Authorization': `Token ${token}`
       },
     });
-    if (!res.ok) throw new Error('Что то пошло не так');
+    if (!res.ok) return false
     return await res.json();
   };
 
@@ -22,12 +22,11 @@ export default class blogAPI {
         'Authorization': `Token ${token}`
       },
     });
-    if (!res.ok) throw new Error('Что то пошло не так');
+    if (!res.ok) return false
     return await res.json();
   };
 
   registerNewUser = async user => {
-    try {
       const res = await fetch(`${this.baseUrl}/users`, {
         method: 'POST',
         headers: {
@@ -35,11 +34,8 @@ export default class blogAPI {
         },
         body: JSON.stringify(user)
       });
-      if (!res.ok) throw new Error('Что то пошло не так');
+      if (!res.ok) alert("Ты пытался, но у тебя не вышло. Попробуй еще раз.");
       return await res.json();
-    } catch (err) {
-      console.err(err)
-    }
   }
 
   signInUser = async user => {
@@ -50,13 +46,13 @@ export default class blogAPI {
       },
       body: JSON.stringify(user)
     });
-    if (!res.ok) throw new Error('Что то пошло не так');
+    if (!res.ok) alert("Ты пытался, но у тебя не вышло. Попробуй еще раз.");
     return await res.json();
   }
 
   getUserProfile = async username => {
     const res = await fetch(`${this.baseUrl}/profiles/${username}`);
-    if (!res.ok) throw new Error('Что то пошло не так');
+    if (!res.ok) return false
     return await res.json();
   }
 
@@ -69,7 +65,7 @@ export default class blogAPI {
       },
       body: JSON.stringify(user)
     });
-    if (!res.ok) throw new Error('Что то пошло не так');
+    if (!res.ok) alert("Ты пытался, но у тебя не вышло. Попробуй еще раз.");
     return await res.json();
   }
 
@@ -82,7 +78,7 @@ export default class blogAPI {
       },
       body: JSON.stringify(article)
     });
-    if (!res.ok) throw new Error('Что то пошло не так');
+    if (!res.ok) alert("Ты пытался, но у тебя не вышло. Попробуй еще раз.");
     return await res.json();
   }
 
@@ -95,7 +91,7 @@ export default class blogAPI {
       },
       body: JSON.stringify(article)
     });
-    if (!res.ok) throw new Error('Что то пошло не так');
+    if (!res.ok) alert("Ты пытался, но у тебя не вышло. Попробуй еще раз.");
     return await res.json();
   }
 
@@ -107,7 +103,7 @@ export default class blogAPI {
         'Authorization': `Token ${token}`,
       }
     });
-    if (!res.ok) throw new Error('Что то пошло не так');
+    if (!res.ok) alert("Ты пытался, но у тебя не вышло. Попробуй еще раз.");
     return res;
   }
 
@@ -119,7 +115,7 @@ export default class blogAPI {
         'Authorization': `Token ${token}`,
       }
     });
-    if (!res.ok) throw new Error('Что то пошло не так');
+    if (!res.ok) alert("Ты пытался, но у тебя не вышло. Попробуй еще раз.");
     return res;
   }
 
