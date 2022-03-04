@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { Link, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import blogAPI from '../../services'
+import defaultPhoto from './default_photo.png'
 
 const blog = new blogAPI()
 
 const ArticleUser = props => {
-    const { author, body, createdAt, username, slug, alone, token } = props
+    const { author, createdAt, username, slug, alone, token } = props
 
     const delArticle = () => {
 
@@ -26,7 +27,7 @@ const ArticleUser = props => {
                         </span>
                     </div>
                     <div className="article_user__img">
-                        <img src={author?.image} alt="user_photo" />
+                        <img src={author?.image || defaultPhoto} alt="user" />
                     </div>
                 </div>
 
@@ -38,14 +39,8 @@ const ArticleUser = props => {
                         </Link>
                     </div>
                 }
-
-
-
             </div>
-
-
         </>
-
     )
 }
 

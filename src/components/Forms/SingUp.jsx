@@ -6,10 +6,11 @@ import { connect } from 'react-redux'
 import FormInput from './FormInput'
 import blogAPI from '../../services'
 import { setSignIn, setUserImg } from '../../redux/actions'
+import setLocalHost from '../../utiles'
 
-const registerAPI = new blogAPI()
+const blog = new blogAPI()
 
-const SingUp = ({ setSignIn, setUserImg, token, image }) => {
+const SingUp = ({ setSignIn, setUserImg, username, email, token, image, auth }) => {
 
     const { register, handleSubmit, watch, formState: { errors, isValid } } = useForm({ mode: 'onBlur' });
 
@@ -24,19 +25,12 @@ const SingUp = ({ setSignIn, setUserImg, token, image }) => {
             }
         }
 
-        await registerAPI.registerNewUser(user).then(res => {
+        await blog.registerNewUser(user).then(res => {
             setSignIn(res.user)
-            registerAPI.getUserProfile(res.user.username).then(res => setUserImg(res.profile.image))
+            blog.getUserProfile(res.user.username).then(res => setUserImg(res.profile.image))
         })
 
-        localStorage.setItem('AuthData', {
-            username: data.username,
-            email: data.email,
-            token: token,
-            image: image,
-            auth: true
-        });
-        console.log(localStorage.getItem('AuthData'))
+        setLocalHost(username, email, token, image, auth)
     };
 
     return (
@@ -127,8 +121,11 @@ const SingUp = ({ setSignIn, setUserImg, token, image }) => {
 
 const mapStateToProps = state => {
     return {
+        username: state.username,
         token: state.token,
-        image: state.username,
+        email: state.email,
+        image: state.image,
+        auth: state.auth
     }
 }
 

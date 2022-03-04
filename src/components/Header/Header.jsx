@@ -16,7 +16,9 @@ const NonAuthHeader = () => {
     )
 }
 
-const AuthHeader = ({ username, setLogOut, image }) => {
+const AuthHeader = ({ username, setLogOut, image, getAllArticles }) => {
+
+
 
     return (
         <div className="autoris-block">
@@ -29,7 +31,11 @@ const AuthHeader = ({ username, setLogOut, image }) => {
             <div className="user-img">
                 <Link to='/profile'><img src={image} alt="Profile IMG" /></Link>
             </div>
-            <Link onClick={() => setLogOut()} to='/' >
+            <Link onClick={() => {
+                localStorage.clear()
+                setLogOut()
+                // getAllArticles()
+            }} to='/' >
                 <button className='log-out-button color-button'>Log Out</button>
             </Link>
         </div>
@@ -46,7 +52,7 @@ const Header = ({ auth, username, setLogOut, image, getAllArticles }) => {
                 </h6>
             </Link>
 
-            {auth ? <AuthHeader image={image} username={username} setLogOut={setLogOut} /> : <NonAuthHeader />}
+            {auth ? <AuthHeader getAllArticles={getAllArticles} image={image} username={username} setLogOut={setLogOut} /> : <NonAuthHeader />}
         </header>
     )
 }

@@ -18,20 +18,20 @@ import EditArticle from '../Forms/EditArticle'
 
 const blog = new blogAPI();
 
-const App = ({ setArticles, setArticle, totalRes }) => {
+const App = ({ setArticles, setArticle, totalRes, token }) => {
 
     const [page, setPage] = useState(1)
     const [load, setLoad] = useState(false)
 
     const getAllArticles = async (page) => {
         setLoad(true)
-        await blog.getArticles(page).then((articles => setArticles(articles)))
+        await blog.getArticles(page, token).then((articles => setArticles(articles)))
         setLoad(false)
     };
 
-    const getArticle = (slug) => {
+    const getArticle = (slug, token) => {
         setLoad(true)
-        blog.getArticle(slug).then((article => setArticle(article)));
+        blog.getArticle(slug, token).then((article => setArticle(article)));
         setLoad(false)
     };
 
@@ -89,7 +89,8 @@ const mapStateToProps = (state) => {
     return {
         articles: state.articles,
         article: state.article,
-        totalRes: state.articlesCount
+        totalRes: state.articlesCount,
+        token: state.token
     }
 }
 

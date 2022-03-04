@@ -6,10 +6,10 @@ import remarkGfm from 'remark-gfm'
 import ArticleTittle from './ArticleTittle';
 import ArticleUser from './ArticleUser';
 
-const AlloneArticle = ({ article, getArticle }) => {
+const AlloneArticle = ({ article, getArticle, token }) => {
     const { slug } = useParams()
     useEffect(() => {
-        getArticle(slug)
+        getArticle(slug, token)
     }, [])
     return (
         <main>
@@ -28,6 +28,8 @@ const AlloneArticle = ({ article, getArticle }) => {
                         updatedAt={article.updatedAt}
                     />
                     <ArticleUser
+                        favorited={article.favorited}
+                        favoritesCount={article.favoritesCount}
                         alone={true}
                         slug={article.slug}
                         author={article.author}
@@ -46,7 +48,8 @@ const AlloneArticle = ({ article, getArticle }) => {
 
 const mapStateToProps = (state) => {
     return {
-        article: state.article
+        article: state.article,
+        token: state.token
     }
 }
 

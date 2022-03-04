@@ -4,14 +4,24 @@ export default class blogAPI {
     this.baseUrl = 'https://kata.academy:8021/api';
   }
 
-  getArticles = async page => {
-    const res = await fetch(`${this.baseUrl}/articles?limit=20&offset=${page}`);
+  getArticles = async (page, token) => {
+    const res = await fetch(`${this.baseUrl}/articles?limit=20&offset=${page}`, {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        'Authorization': `Token ${token}`
+      },
+    });
     if (!res.ok) throw new Error('Что то пошло не так');
     return await res.json();
   };
 
-  getArticle = async slug => {
-    const res = await fetch(`${this.baseUrl}/articles/${slug}`);
+  getArticle = async (slug, token) => {
+    const res = await fetch(`${this.baseUrl}/articles/${slug}`, {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        'Authorization': `Token ${token}`
+      },
+    });
     if (!res.ok) throw new Error('Что то пошло не так');
     return await res.json();
   };
@@ -30,7 +40,6 @@ export default class blogAPI {
     } catch (err) {
       console.err(err)
     }
-
   }
 
   signInUser = async user => {
@@ -40,17 +49,6 @@ export default class blogAPI {
         'Content-Type': 'application/json;charset=utf-8'
       },
       body: JSON.stringify(user)
-    });
-    if (!res.ok) throw new Error('Что то пошло не так');
-    return await res.json();
-  }
-
-  getUser = async token => {
-    const res = await fetch(`${this.baseUrl}/user`, {
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        'Authorization': `Bearer ${token}`
-      },
     });
     if (!res.ok) throw new Error('Что то пошло не так');
     return await res.json();
@@ -67,7 +65,7 @@ export default class blogAPI {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Token ${token}`
       },
       body: JSON.stringify(user)
     });
@@ -112,6 +110,20 @@ export default class blogAPI {
     if (!res.ok) throw new Error('Что то пошло не так');
     return res;
   }
+
+  favorite = async (token, slug, method) => {
+    const res = await fetch(`${this.baseUrl}/articles/${slug}/favorite`, {
+      method: method,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Token ${token}`,
+      }
+    });
+    if (!res.ok) throw new Error('Что то пошло не так');
+    return res;
+  }
+
+
 
 
 

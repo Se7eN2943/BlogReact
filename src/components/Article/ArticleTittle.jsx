@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
+import blogAPI from '../../services'
 
+const blog = new blogAPI()
 
 const HeartOutlined = ({ liked }) => {
     return (
@@ -48,19 +50,21 @@ const Tags = ({ tag }) => {
 }
 
 const ArticleTittle = (props) => {
-    const { auth, slug, title, description, favorited, favoritesCount, tagList, getArticle } = props
+
+    const { auth, slug, title, description, favorited, favoritesCount, tagList, token } = props
     const [like, setLike] = useState(favorited)
     const [likeCount, setLikeCount] = useState(favoritesCount)
-
     const tags = tagList?.map((tag, i) => tag.length != 0 && < Tags tag={tag} key={i} />)
 
     const liked = () => {
         if (!auth) return
         if (like) {
+            blog.favorite(token, slug, 'DELETE')
             setLike(false)
             return setLikeCount(likeCount => likeCount -= 1)
         }
         setLike(true)
+        blog.favorite(token, slug, 'POST').then(a => console.log(a.json()))
         return setLikeCount(likeCount => likeCount += 1)
     }
 
@@ -89,6 +93,7 @@ const ArticleTittle = (props) => {
 const mapStateToProps = (state) => {
     return {
         auth: state.auth,
+        token: state.token,
     }
 }
 

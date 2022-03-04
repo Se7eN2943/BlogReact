@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import FormInput from './FormInput'
 import blogAPI from '../../services'
-import { setSignIn, setUserImg } from '../../redux/actions'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
@@ -130,6 +129,8 @@ const CreateArticle = ({ token, article, editing }) => {
         </div>
     )
 }
+
+
 
 const mapStateToProps = (state) => {
     return {

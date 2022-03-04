@@ -6,7 +6,7 @@ import FormInput from './FormInput'
 import blogAPI from '../../services'
 import { setSignIn, setUserImg } from '../../redux/actions'
 
-const editProfileAPI = new blogAPI()
+const blog = new blogAPI()
 
 const EditProfile = ({ username, email, image, token, setSignIn, setUserImg }) => {
 
@@ -27,7 +27,7 @@ const EditProfile = ({ username, email, image, token, setSignIn, setUserImg }) =
             }
         }
 
-        editProfileAPI.putUserProfile(token, user).then(({ user }) => {
+        blog.putUserProfile(token, user).then(({ user }) => {
             console.log(user);
             const putUser = {
                 username: user.username,

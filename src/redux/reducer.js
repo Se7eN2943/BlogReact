@@ -29,7 +29,10 @@ const reducer = (state = initialState, {
       return {
         ...state,
         auth: false,
-          username: '',
+        image: '',
+        email: '',
+        username: '',
+        token: ''
       };
     case 'SIGNIN':
       return {
