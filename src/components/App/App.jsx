@@ -108,7 +108,7 @@ const App = ({ setArticles, setArticle, totalRes, token }) => {
                     } />
                     <Route path='new-article' element={
                         <Private>
-                            <CreateArticle />
+                            <CreateArticle getOneArticle={getOneArticle} />
                         </Private>
                     } />
                 </Routes>

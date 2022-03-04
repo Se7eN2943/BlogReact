@@ -16,7 +16,7 @@ const Tag = ({ value, onDeleteTag }) => {
     )
 }
 
-const NewTag = ({ onAddTag, errorMessage, setErrorMessage }) => {
+const NewTag = ({ onAddTag, errorMessage, setErrorMessage, getOneArticle }) => {
 
     const [tagValue, setTagValue] = useState('')
 
@@ -52,7 +52,7 @@ const TagList = ({ tags, onDeleteTag }) => {
     )
 }
 
-const CreateArticle = ({ token, article, editing }) => {
+const CreateArticle = ({ token, article, editing, getOneArticle }) => {
 
     const { title, description, body, tagList, slug } = article
     const defaultTagList = editing ? tagList : []
@@ -86,7 +86,10 @@ const CreateArticle = ({ token, article, editing }) => {
         if (editing) {
             createArticleAPI.editArticle(token, article, slug).then(() => navigate(-1))
         } else {
-            createArticleAPI.createArticle(token, article).then(article => navigate(`/articles`))
+            createArticleAPI.createArticle(token, article).then(article => {
+                getOneArticle(article.article.slug, token)
+                navigate(`/articles/${article.article.slug}`)
+            })
         }
     };
 
