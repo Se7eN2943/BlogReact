@@ -17,7 +17,9 @@ const Tag = ({ value, onDeleteTag }) => {
 }
 
 const NewTag = ({ onAddTag, errorMessage, setErrorMessage }) => {
+
     const [tagValue, setTagValue] = useState('')
+
     const onAdd = () => {
         onAddTag(tagValue)
         setTagValue('')
@@ -25,7 +27,11 @@ const NewTag = ({ onAddTag, errorMessage, setErrorMessage }) => {
     return (
         <>
             <label className="article-form_tag article-form_input form_input">
-                <input onFocus={() => setErrorMessage(false)} onInput={e => setTagValue(e.target.value)} value={tagValue} className="article-form_tag__input" placeholder='Tag' name='Tag' />
+                <input onFocus={() => setErrorMessage(false)}
+                    onInput={e => setTagValue(e.target.value)}
+                    value={tagValue} className="article-form_tag__input"
+                    placeholder='Tag'
+                    name='Tag' />
                 <button onClick={() => setTagValue('')} className="tag-delete color-button" type='button'>Delete</button>
                 <button onClick={onAdd} className="tag-add color-button" type='button'>Add tag</button>
             </label>
@@ -47,6 +53,7 @@ const TagList = ({ tags, onDeleteTag }) => {
 }
 
 const CreateArticle = ({ token, article, editing }) => {
+
     const { title, description, body, tagList, slug } = article
     const defaultTagList = editing ? tagList : []
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -83,12 +90,10 @@ const CreateArticle = ({ token, article, editing }) => {
         }
     };
 
-
     return (
         <div className="form shadow-box article-form">
             <h5> {editing ? 'Edit article' : 'Create new article'}  </h5>
             <form className='form_form' onSubmit={handleSubmit(onSubmit)}>
-
                 <FormInput
                     onInput={editing && (e => setEditTitle(e.target.value))}
                     value={editing && editTitle}
@@ -122,7 +127,6 @@ const CreateArticle = ({ token, article, editing }) => {
                         required: true
                     })}
                 />
-
                 <TagList onDeleteTag={onDeleteTag} tags={tags} />
                 <NewTag setErrorMessage={setErrorMessage} onAddTag={onAddTag} errorMessage={errorMessage} />
                 <button className="form_submit" type="submit">{editing ? 'Send' : 'Create'}</button>
@@ -130,8 +134,6 @@ const CreateArticle = ({ token, article, editing }) => {
         </div>
     )
 }
-
-
 
 const mapStateToProps = (state) => {
     return {

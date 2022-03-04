@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { format } from 'date-fns'
 import { Link, useNavigate } from 'react-router-dom'
 import blogAPI from '../../services'
-import defaultPhoto from './default_photo.png'
 
 const blog = new blogAPI()
 
@@ -30,7 +29,7 @@ const ArticleUser = props => {
                         </span>
                     </div>
                     <div className="article_user__img">
-                        <img src={author?.image || defaultPhoto} alt="user" />
+                        <img src={author?.image} alt="user" />
                     </div>
                 </div>
                 {(author?.username === username && alone) &&
@@ -50,7 +49,6 @@ const mapStateToProps = (state) => {
     return {
         username: state.username,
         token: state.token
-
     }
 }
 

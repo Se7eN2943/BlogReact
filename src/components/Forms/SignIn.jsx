@@ -10,8 +10,10 @@ import setLocalHost from '../../utiles'
 const blog = new blogAPI()
 
 const SingIn = ({ setSignIn, setUserImg }) => {
+    
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate()
+
     const onSubmit = async data => {
         const user = {
             user: {
@@ -28,7 +30,6 @@ const SingIn = ({ setSignIn, setUserImg }) => {
         })
         navigate(-1)
     };
-
 
     return (
         <div className="form shadow-box">

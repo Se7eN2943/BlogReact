@@ -43,7 +43,6 @@ const EditProfile = ({ username, email, image, token, setSignIn, setUserImg }) =
         <div className="form shadow-box">
             <h5>  Edit Profile </h5>
             <form className='form_form' onSubmit={handleSubmit(onSubmit)}>
-
                 <FormInput
                     onInput={e => setUserName(e.target.value)}
                     value={userName}

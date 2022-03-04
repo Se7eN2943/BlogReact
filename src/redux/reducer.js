@@ -9,16 +9,13 @@ const initialState = {
   email: localStorage.getItem('email') || '',
 };
 
-const reducer = (state = initialState, {
-  payload,
-  type
-}) => {
+const reducer = (state = initialState, { payload, type }) => {
   switch (type) {
     case 'ARTICLES':
       return {
         ...state,
         articles: payload.articles,
-          articlesCount: payload.articlesCount,
+        articlesCount: payload.articlesCount,
       };
     case 'ARTICLE':
       return {
@@ -38,16 +35,15 @@ const reducer = (state = initialState, {
       return {
         ...state,
         auth: true,
-          username: payload.username,
-          token: payload.token,
-          email: payload.email,
+        username: payload.username,
+        token: payload.token,
+        email: payload.email,
       };
     case 'SETIMG':
       return {
         ...state,
         image: payload,
       };
-
     default:
       return state;
   }

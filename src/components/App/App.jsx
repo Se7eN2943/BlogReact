@@ -18,11 +18,10 @@ import EditArticle from '../Forms/EditArticle'
 const blog = new blogAPI();
 
 const App = ({ setArticles, setArticle, totalRes, token }) => {
-
     const [page, setPage] = useState(1)
     const [load, setLoad] = useState(false)
     const [onLoad, setOnLoad] = useState(true)
-
+    
     const getAllArticles = async (page) => {
         setLoad(true)
         await blog.getArticles(page, token).then((articles => {

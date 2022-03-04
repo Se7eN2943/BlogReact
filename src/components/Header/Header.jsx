@@ -34,7 +34,7 @@ const AuthHeader = ({ username, setLogOut, image }) => {
             <Link onClick={() => {
                 localStorage.clear()
                 setLogOut()
-                navigate('/articles', {replace: true})
+                navigate('/articles', { replace: true })
             }} to='/' >
                 <button className='log-out-button color-button'>Log Out</button>
             </Link>
@@ -43,20 +43,15 @@ const AuthHeader = ({ username, setLogOut, image }) => {
 }
 
 const Header = ({ auth, username, setLogOut, image, getAllArticles }) => {
-
     return (
         <header onClick={getAllArticles}>
             <Link to='/articles'>
-                <h6>
-                    Realworld Blog
-                </h6>
+                <h6>Realworld Blog</h6>
             </Link>
-
             {auth ? <AuthHeader getAllArticles={getAllArticles} image={image} username={username} setLogOut={setLogOut} /> : <NonAuthHeader />}
         </header>
     )
 }
-
 
 const mapStateToProps = (state) => {
     return {

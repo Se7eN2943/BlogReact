@@ -31,31 +31,3 @@ export const setSignIn = user => {
     payload: user
   };
 };
-
-// export const setSortFlag = (flag) => {
-//   return {
-//     type: 'SORT',
-//     payload: flag,
-//   };
-// };
-
-// export const setFilterList = (list) => {
-//   return {
-//     type: 'FILTER',
-//     payload: list,
-//   };
-// };
-
-// export const setSlice = (sliced) => {
-//   return {
-//     type: 'SLICED',
-//     payload: sliced,
-//   };
-// };
-
-// export const setTicketsFlag = (ticketsFlag) => {
-//   return {
-//     type: 'TICKETS_FLAG',
-//     payload: ticketsFlag,
-//   };
-// };

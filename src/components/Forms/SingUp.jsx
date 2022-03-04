@@ -7,15 +7,14 @@ import FormInput from './FormInput'
 import blogAPI from '../../services'
 import { setSignIn, setUserImg } from '../../redux/actions'
 import setLocalHost from '../../utiles'
+import defaultPhoto from '../default_photo.png'
 
 const blog = new blogAPI()
 
 const SingUp = ({ setSignIn, setUserImg }) => {
     const navigate = useNavigate()
     const { register, handleSubmit, watch, formState: { errors, isValid } } = useForm({ mode: 'onBlur' });
-
     const [checked, setChecked] = useState(false)
-
     const onSubmit = async data => {
         const user = {
             user: {
@@ -24,21 +23,19 @@ const SingUp = ({ setSignIn, setUserImg }) => {
                 password: data.password
             }
         }
-
         await blog.registerNewUser(user).then(res => {
             const { username, token, email } = res.user
             setSignIn(res.user)
             blog.getUserProfile(username).then(res => {
                 if (!res) {
-                    setLocalHost(username, email, token, true, '')
-                    setUserImg('')
+                    setLocalHost(username, email, token, true, defaultPhoto)
+                    setUserImg(defaultPhoto)
                 } else {
                     setLocalHost(username, email, token, true, res.profile.image)
                     setUserImg(res.profile.image)
                 }
             })
         })
-
         navigate(-1)
     };
 

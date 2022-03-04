@@ -11,8 +11,6 @@ import './components/Article/Article.scss';
 import './components/ArticleList/ArticleList.scss';
 import './components/Forms/AccountForms.scss';
 
-
-
 ReactDOM.render(
   <BrowserRouter>
     <Provider store={store}>

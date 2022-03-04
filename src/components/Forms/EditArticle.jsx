@@ -1,6 +1,4 @@
 import React from 'react';
 import CreateArticle from './CreateArticle';
 
-const EditArticle = () => <CreateArticle editing={true} />
-
-export default EditArticle
+export default function EditArticle () {<CreateArticle editing={true} />}

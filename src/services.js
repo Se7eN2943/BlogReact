@@ -27,15 +27,15 @@ export default class blogAPI {
   };
 
   registerNewUser = async user => {
-      const res = await fetch(`${this.baseUrl}/users`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: JSON.stringify(user)
-      });
-      if (!res.ok) alert("Ты пытался, но у тебя не вышло. Попробуй еще раз.");
-      return await res.json();
+    const res = await fetch(`${this.baseUrl}/users`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      },
+      body: JSON.stringify(user)
+    });
+    if (!res.ok) alert("Ты пытался, но у тебя не вышло. Попробуй еще раз.");
+    return await res.json();
   }
 
   signInUser = async user => {
@@ -118,10 +118,4 @@ export default class blogAPI {
     if (!res.ok) alert("Ты пытался, но у тебя не вышло. Попробуй еще раз.");
     return res;
   }
-
-
-
-
-
-
 }

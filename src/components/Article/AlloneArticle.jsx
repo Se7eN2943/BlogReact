@@ -7,10 +7,13 @@ import ArticleTittle from './ArticleTittle';
 import ArticleUser from './ArticleUser';
 
 const AlloneArticle = ({ article, getArticle, token, getAllArticles }) => {
+    
     const { slug } = useParams()
+
     useEffect(() => {
         getArticle(slug, token)
     }, [])
+
     return (
         <main>
             <div className="article shadow-box article-alone">
@@ -39,13 +42,10 @@ const AlloneArticle = ({ article, getArticle, token, getAllArticles }) => {
                     />
                 </div>
                 <div className="article-alone_body">
-                    
                     <ReactMarkdown children={article.body} remarkPlugins={[remarkGfm]} />
                 </div>
             </div>
         </main>
-
-
     )
 }
 
