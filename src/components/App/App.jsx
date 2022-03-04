@@ -37,6 +37,7 @@ const App = ({ setArticles, setArticle, totalRes, token }) => {
         await blog.getArticle(slug, token).then((article => {
             if (!article) return setOnLoad(false)
             setArticle(article)
+            localStorage.setItem('article', JSON.stringify(article))
             setOnLoad(true)
         }));
         return setLoad(false)
@@ -44,7 +45,6 @@ const App = ({ setArticles, setArticle, totalRes, token }) => {
 
     useEffect(() => {
         getAllArticles()
-        getOneArticle('a-vhwllo', token)
     }, [])
 
     return (

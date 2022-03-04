@@ -1,7 +1,7 @@
 const initialState = {
   articles: [],
   articlesCount: 0,
-  article: {},
+  article: JSON.parse(localStorage.getItem('article')).article || {},
   auth: localStorage.getItem('auth') || '',
   username: localStorage.getItem('username') || '',
   image: localStorage.getItem('image') || '',

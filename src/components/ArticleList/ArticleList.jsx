@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux'
 import Article from '../Article/Article';
 
-const ArticleList = ({ articles, getOneArticle}) => {
+const ArticleList = ({ articles, getOneArticle }) => {
 
     const elements = articles.map(article => {
         return <Article
@@ -20,7 +20,6 @@ const ArticleList = ({ articles, getOneArticle}) => {
             getOneArticle={getOneArticle}
         />
     })
-
 
     return (
         <main>
