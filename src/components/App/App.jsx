@@ -48,7 +48,7 @@ const App = ({ setArticles, setArticle, totalRes, token }) => {
                 <Routes>
                     <Route path='/articles' element={
                         <>
-                            <ArticleList getArticle={getArticle} />
+                            <ArticleList  getArticle={getArticle} />
                             {totalRes > 20 && !load && <Pagination
                                 showSizeChanger={false}
                                 pageSize={20}
@@ -63,7 +63,7 @@ const App = ({ setArticles, setArticle, totalRes, token }) => {
                         </>
                     } />
                     <Route path='/' element={<Navigate to='/articles' replace />} />
-                    <Route path='articles/:slug' element={<AlloneArticle getArticle={getArticle} />} />
+                    <Route path='articles/:slug' element={<AlloneArticle getAllArticles={getAllArticles} getArticle={getArticle} />} />
                     <Route path='sign-in' element={
                         <OnAutoris>
                             <SignIn />

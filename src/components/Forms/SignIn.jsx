@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import FormInput from './FormInput'
 import blogAPI from '../../services'
@@ -9,9 +9,9 @@ import setLocalHost from '../../utiles'
 
 const blog = new blogAPI()
 
-const SingIn = ({ setSignIn, setUserImg, username, email, token, image, auth }) => {
+const SingIn = ({ setSignIn, setUserImg }) => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-
+    const navigate = useNavigate()
     const onSubmit = async data => {
         const user = {
             user: {
@@ -22,11 +22,13 @@ const SingIn = ({ setSignIn, setUserImg, username, email, token, image, auth }) 
 
         await blog.signInUser(user).then(res => {
             setSignIn(res.user)
+            const { username, token, image, email } = res.user
+            setLocalHost(username, email, token, true, image)
             blog.getUserProfile(res.user.username).then(res => setUserImg(res.profile.image))
         })
-
-        setLocalHost(username, email, token, image, auth)
+        navigate(-1)
     };
+
 
     return (
         <div className="form shadow-box">
@@ -64,11 +66,7 @@ const SingIn = ({ setSignIn, setUserImg, username, email, token, image, auth }) 
 
 const mapStateToProps = state => {
     return {
-        username: state.username,
         token: state.token,
-        email: state.email,
-        image: state.image,
-        auth: state.auth
     }
 }
 

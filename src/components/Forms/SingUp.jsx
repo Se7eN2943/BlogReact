@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Checkbox } from 'antd';
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate} from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import { connect } from 'react-redux'
 import FormInput from './FormInput'
@@ -10,7 +10,7 @@ import setLocalHost from '../../utiles'
 
 const blog = new blogAPI()
 
-const SingUp = ({ setSignIn, setUserImg, username, email, token, image, auth }) => {
+const SingUp = ({ setSignIn, setUserImg }) => {
     const navigate = useNavigate()
     const { register, handleSubmit, watch, formState: { errors, isValid } } = useForm({ mode: 'onBlur' });
 
@@ -26,13 +26,15 @@ const SingUp = ({ setSignIn, setUserImg, username, email, token, image, auth }) 
         }
 
         await blog.registerNewUser(user).then(res => {
+            const { username, token, email } = res.user
             setSignIn(res.user)
-            blog.getUserProfile(res.user.username).then(res => setUserImg(res.profile.image))
+            blog.getUserProfile(username).then(res => {
+                setLocalHost(username, email, token, true, res.profile.image)
+                setUserImg(res.profile.image)
+            })
         })
 
-        setLocalHost(username, email, token, image, auth)
-
-        navigate('/articles')
+        navigate(-1)
     };
 
     return (
@@ -123,11 +125,7 @@ const SingUp = ({ setSignIn, setUserImg, username, email, token, image, auth }) 
 
 const mapStateToProps = state => {
     return {
-        username: state.username,
-        token: state.token,
-        email: state.email,
-        image: state.image,
-        auth: state.auth
+        username: state.username
     }
 }
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import { format } from 'date-fns'
 import { Link, useNavigate } from 'react-router-dom'
 import blogAPI from '../../services'
 import defaultPhoto from './default_photo.png'
@@ -7,14 +8,13 @@ import defaultPhoto from './default_photo.png'
 const blog = new blogAPI()
 
 const ArticleUser = props => {
-    const { author, createdAt, username, slug, alone, token } = props
+    const { author, createdAt, username, slug, alone, token, getAllArticles } = props
     const navigate = useNavigate()
-    const delArticle = () => {
-
-        blog.delArticle(token, slug)
-        blog.getArticles(0, token)
-
-        navigate('/articles')
+    const data = createdAt !== undefined && createdAt.split('T')[0]
+    const delArticle = async () => {
+        await blog.delArticle(token, slug)
+        getAllArticles()
+        navigate('/articles', { replace: true })
     }
 
     return (
@@ -26,14 +26,13 @@ const ArticleUser = props => {
                             {author?.username}
                         </h6>
                         <span className="article_user__title--date user_date">
-                            {createdAt}
+                            {format(new Date(data), 'PP') || null}
                         </span>
                     </div>
                     <div className="article_user__img">
                         <img src={author?.image || defaultPhoto} alt="user" />
                     </div>
                 </div>
-
                 {(author?.username === username && alone) &&
                     <div className="article_user_buttons">
                         <button onClick={delArticle} className="article_user_buttons__delete color-button" type='button'>Delete</button>
@@ -46,8 +45,6 @@ const ArticleUser = props => {
         </>
     )
 }
-
-
 
 const mapStateToProps = (state) => {
     return {

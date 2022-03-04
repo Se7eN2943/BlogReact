@@ -1,9 +1,7 @@
 import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
+import store from './redux/store'
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import reducer from './redux/reducer';
 import App from './components/App/App';
 import 'antd/dist/antd.css';
 import './reset.scss';
@@ -14,20 +12,6 @@ import './components/ArticleList/ArticleList.scss';
 import './components/Forms/AccountForms.scss';
 
 
-const root = document.querySelector('.root');
-
-const logger = (store) => (next) => (actions) => {
-  const res = next(actions);
-  console.log(store.getState());
-  return res;
-};
-
-const composeEnhancers =
-  typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
-    : compose;
-
-const store = createStore(reducer, composeEnhancers(applyMiddleware(logger, thunk)));
 
 ReactDOM.render(
   <BrowserRouter>
@@ -35,5 +19,5 @@ ReactDOM.render(
       <App />
     </Provider>
   </BrowserRouter>,
-  root
+  document.querySelector('.root')
 );

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux'
 import Article from '../Article/Article';
 
-const ArticleList = ({ articles, getArticle }) => {
+const ArticleList = ({ articles, getArticle}) => {
 
     const elements = articles.map(article => {
         return <Article

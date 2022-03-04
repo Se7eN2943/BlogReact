@@ -6,7 +6,7 @@ import remarkGfm from 'remark-gfm'
 import ArticleTittle from './ArticleTittle';
 import ArticleUser from './ArticleUser';
 
-const AlloneArticle = ({ article, getArticle, token }) => {
+const AlloneArticle = ({ article, getArticle, token, getAllArticles }) => {
     const { slug } = useParams()
     useEffect(() => {
         getArticle(slug, token)
@@ -34,6 +34,8 @@ const AlloneArticle = ({ article, getArticle, token }) => {
                         slug={article.slug}
                         author={article.author}
                         createdAt={article.createdAt}
+                        getArticle={getArticle}
+                        getAllArticles={getAllArticles}
                     />
                 </div>
                 <div className="article-alone_body">
