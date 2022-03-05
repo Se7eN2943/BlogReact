@@ -3,11 +3,11 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import FormInput from './FormInput'
-import blogAPI from '../../services'
+import BlogAPI from '../../services'
 import { setSignIn, setUserImg } from '../../redux/actions'
 import setLocalHost from '../../utiles'
 
-const blog = new blogAPI()
+const blog = new BlogAPI()
 
 const SingIn = ({ setSignIn, setUserImg }) => {
     

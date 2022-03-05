@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import blogAPI from '../../services'
+import BlogAPI from '../../services'
 
-const blog = new blogAPI()
+const blog = new BlogAPI()
 
 const HeartOutlined = ({ liked }) => {
     return (

@@ -4,12 +4,12 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import { connect } from 'react-redux'
 import FormInput from './FormInput'
-import blogAPI from '../../services'
+import BlogAPI from '../../services'
 import { setSignIn, setUserImg } from '../../redux/actions'
 import setLocalHost from '../../utiles'
 import defaultPhoto from '../default_photo.png'
 
-const blog = new blogAPI()
+const blog = new BlogAPI()
 
 const SingUp = ({ setSignIn, setUserImg }) => {
     const navigate = useNavigate()

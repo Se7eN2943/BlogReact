@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import { connect } from 'react-redux'
 import FormInput from './FormInput'
-import blogAPI from '../../services'
+import BlogAPI from '../../services'
 import { setSignIn, setUserImg } from '../../redux/actions'
 
-const blog = new blogAPI()
+const blog = new BlogAPI()
 
 const EditProfile = ({ username, email, image, token, setSignIn, setUserImg }) => {
 

@@ -4,10 +4,9 @@ import { format } from 'date-fns'
 import { Popover, Button } from 'antd';
 import { InfoCircleFilled } from '@ant-design/icons';
 import { Link, useNavigate } from 'react-router-dom'
-import blogAPI from '../../services'
+import BlogAPI from '../../services'
 
-
-const blog = new blogAPI()
+const blog = new BlogAPI()
 
 const ArticleUser = props => {
     const { author, createdAt, username, slug, alone, token, getAllArticles } = props
@@ -34,7 +33,6 @@ const ArticleUser = props => {
             </div>
         </div>
     );
-
 
     return (
         <>
@@ -66,9 +64,6 @@ const ArticleUser = props => {
                         </Link>
                     </div>
                 }
-
-
-
             </div>
         </>
     )

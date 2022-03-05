@@ -3,7 +3,7 @@ import { Pagination, Spin, Alert } from 'antd';
 import { connect } from 'react-redux'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { setArticles, setArticle } from '../../redux/actions'
-import blogAPI from '../../services'
+import BlogAPI from '../../services'
 import Header from '../Header/Header'
 import ArticleList from '../ArticleList/ArticleList'
 import AlloneArticle from '../Article/AlloneArticle'
@@ -15,7 +15,7 @@ import CreateArticle from '../Forms/CreateArticle'
 import EditProfile from '../Forms/EditProfile'
 import EditArticle from '../Forms/EditArticle'
 
-const blog = new blogAPI();
+const blog = new BlogAPI();
 
 const App = ({ setArticles, setArticle, totalRes, token }) => {
     const [page, setPage] = useState(1)

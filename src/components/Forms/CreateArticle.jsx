@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import FormInput from './FormInput'
-import blogAPI from '../../services'
+import BlogAPI from '../../services'
 import { useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-const createArticleAPI = new blogAPI()
+const createArticleAPI = new BlogAPI()
 
 const Tag = ({ value, onDeleteTag }) => {
     return (

@@ -1,4 +1,4 @@
-export default class blogAPI {
+export default class BlogAPI {
 
   constructor() {
     this.baseUrl = 'https://kata.academy:8021/api';
