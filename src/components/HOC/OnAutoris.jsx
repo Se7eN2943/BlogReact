@@ -1,17 +1,17 @@
-import { Navigate, useLocation } from 'react-router-dom'
-import { connect } from 'react-redux'
+import { Navigate, useLocation } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const OnAutoris = ({ children, auth }) => {
-    const location = useLocation()
-    const fromPage = location?.state?.goingFrom?.pathname || '/articles'
-    if (auth) return <Navigate to={fromPage} state={{ goingFrom: location }} />
-    return children
+function OnAutoris({ children, auth }) {
+  const location = useLocation();
+  const fromPage = location?.state?.goingFrom?.pathname || '/articles';
+  if (auth) return <Navigate to={fromPage} state={{ goingFrom: location }} />;
+  return children;
 }
 
 const mapStateToProps = (state) => {
-    return {
-        auth: state.auth,
-    }
-}
+  return {
+    auth: state.auth,
+  };
+};
 
-export default connect(mapStateToProps)(OnAutoris)
+export default connect(mapStateToProps)(OnAutoris);

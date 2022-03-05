@@ -1,11 +1,11 @@
-export const setArticles = articles => {
+export const setArticles = (articles) => {
   return {
     type: 'ARTICLES',
     payload: articles,
   };
 };
 
-export const setArticle = article => {
+export const setArticle = (article) => {
   return {
     type: 'ARTICLE',
     payload: article,
@@ -14,20 +14,20 @@ export const setArticle = article => {
 
 export const setLogOut = () => {
   return {
-    type: 'LOGOUT'
+    type: 'LOGOUT',
   };
 };
 
-export const setUserImg = img => {
+export const setUserImg = (img) => {
   return {
     type: 'SETIMG',
-    payload: img
+    payload: img,
   };
 };
 
-export const setSignIn = user => {
+export const setSignIn = (user) => {
   return {
     type: 'SIGNIN',
-    payload: user
+    payload: user,
   };
 };

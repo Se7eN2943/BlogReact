@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import BlogAPI from '../../services'
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import BlogAPI from '../../services';
 
-const blog = new BlogAPI()
+const blog = new BlogAPI();
 
-const HeartOutlined = ({ liked }) => {
-    return (
-        <div onClick={liked} className="heart heart-outlined">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M7.99998 15.1099C7.7722 15.1099 7.5526 15.0273 7.38146 14.8774C6.73509 14.3123 6.11193 13.7811 5.56212 13.3126L5.55932 
+function HeartOutlined({ liked }) {
+  return (
+    <div onClick={liked} className="heart heart-outlined">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M7.99998 15.1099C7.7722 15.1099 7.5526 15.0273 7.38146 14.8774C6.73509 14.3123 6.11193 13.7811 5.56212 13.3126L5.55932 
                 13.3102C3.94738 11.9365 2.55542 10.7502 1.58691 9.58167C0.504272 8.27527 0 7.03662 0 5.68347C0 4.36877 0.450805 3.15588 1.26928 
                 2.26807C2.09753 1.36975 3.234 0.875 4.46972 0.875C5.3933 0.875 6.23912 1.16699 6.98363 1.7428C7.35936 2.03345 7.69994 2.38916 
                 7.99998 2.80408C8.30015 2.38916 8.64061 2.03345 9.01646 1.7428C9.76097 1.16699 10.6068 0.875 11.5304 0.875C12.766 0.875 13.9026 
@@ -21,85 +22,77 @@ const HeartOutlined = ({ liked }) => {
                 6.82153 15.0628 5.68347C15.0628 4.60486 14.7002 3.61755 14.0417 2.90332C13.393 2.19971 12.5011 1.81226 11.5304 1.81226C10.8192 
                 1.81226 10.1662 2.03833 9.5897 2.48413C9.07591 2.88159 8.718 3.38403 8.50816 3.7356C8.40025 3.91638 8.21031 4.02429 7.99998 
                 4.02429C7.78966 4.02429 7.59972 3.91638 7.49181 3.7356C7.28209 3.38403 6.92418 2.88159 6.41027 2.48413C5.83373 2.03833 5.18078 
-                1.81226 4.46972 1.81226Z" fill="black" fillOpacity="0.75" />
-            </svg>
-        </div>
-
-    )
+                1.81226 4.46972 1.81226Z"
+          fill="black"
+          fillOpacity="0.75"
+        />
+      </svg>
+    </div>
+  );
 }
 
-const HeartFilled = ({ liked }) => {
-    return (
-        <div onClick={liked} className="heart heart-filled">
-            <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8 2.56911C7.26154 1.33835 6.03077 0.476807 4.55385 0.476807C2.46154 0.476807 0.861542 2.07681 0.861542 4.16911C0.861542 8.23065 3.07693
+function HeartFilled({ liked }) {
+  return (
+    <div onClick={liked} className="heart heart-filled">
+      <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M8 2.56911C7.26154 1.33835 6.03077 0.476807 4.55385 0.476807C2.46154 0.476807 0.861542 2.07681 0.861542 4.16911C0.861542 8.23065 3.07693
                 8.84604 8 13.523C12.9231 8.84604 15.1385 8.23065 15.1385 4.16911C15.1385 2.07681 13.5385 0.476807 11.4462 0.476807C9.96923 0.476807 8.73846 1.33835
                 8 2.56911Z"
-                    fill="#FF0707" />
-            </svg>
-        </div>
-    )
+          fill="#FF0707"
+        />
+      </svg>
+    </div>
+  );
 }
 
-const Tags = ({ tag }) => {
-    return (
-        <div className="tag">
-            {tag}
-        </div>
-    )
+function Tags({ tag }) {
+  return <div className="tag">{tag}</div>;
 }
 
-const ArticleTittle = (props) => {
+function ArticleTittle(props) {
+  const { auth, slug, title, description, favorited, favoritesCount, tagList, token, getOneArticle, alone } = props;
+  const [like, setLike] = useState(favorited);
+  const [likeCount, setLikeCount] = useState(favoritesCount);
+  const tags = tagList?.map((tag, i) => tag.length != 0 && <Tags tag={tag} key={i} />);
 
-    const { auth, slug, title, description, favorited, favoritesCount, tagList, token, getOneArticle, alone } = props
-    const [like, setLike] = useState(favorited)
-    const [likeCount, setLikeCount] = useState(favoritesCount)
-    const tags = tagList?.map((tag, i) => tag.length != 0 && < Tags tag={tag} key={i} />)
+  useEffect(() => {
+    !auth && setLike(false);
+  }, [auth]);
 
-    useEffect(() => {
-        !auth && setLike(false)
-    }, [auth])
-
-    const liked = () => {
-        if (!auth) return
-        if (like) {
-            blog.favorite(token, slug, 'DELETE')
-            setLike(false)
-            setLikeCount(likeCount => likeCount -= 1)
-        } else {
-            blog.favorite(token, slug, 'POST')
-            setLike(true)
-            setLikeCount(likeCount => likeCount += 1)
-        }
+  const liked = () => {
+    if (!auth) return;
+    if (like) {
+      blog.favorite(token, slug, 'DELETE');
+      setLike(false);
+      setLikeCount((likeCount) => (likeCount -= 1));
+    } else {
+      blog.favorite(token, slug, 'POST');
+      setLike(true);
+      setLikeCount((likeCount) => (likeCount += 1));
     }
+  };
 
-    return (
-        <div className="article_tittle">
-            <div className="article_tittle__header">
-                <h5 onClick={!alone ? () => getOneArticle(slug, token) : null}>
-                    <Link to={`/articles/${slug}`}>{title}</Link>
-                </h5>
-                {like ? <HeartFilled liked={liked} /> : <HeartOutlined liked={liked} />}
-                <div className="licke-count">
-                    {likeCount !== 0 && likeCount}
-                </div>
-            </div>
-            <div className="article_tittle__tags">
-                {tags}
-            </div>
-            <p className="article_tittle__tittle">
-                {description}
-            </p>
-        </div >
-    )
+  return (
+    <div className="article_tittle">
+      <div className="article_tittle__header">
+        <h5 onClick={!alone ? () => getOneArticle(slug, token) : null}>
+          <Link to={`/articles/${slug}`}>{title}</Link>
+        </h5>
+        {like ? <HeartFilled liked={liked} /> : <HeartOutlined liked={liked} />}
+        <div className="licke-count">{likeCount !== 0 && likeCount}</div>
+      </div>
+      <div className="article_tittle__tags">{tags}</div>
+      <p className="article_tittle__tittle">{description}</p>
+    </div>
+  );
 }
-
 
 const mapStateToProps = (state) => {
-    return {
-        auth: state.auth,
-        token: state.token,
-    }
-}
+  return {
+    auth: state.auth,
+    token: state.token,
+  };
+};
 
-export default connect(mapStateToProps)(ArticleTittle)
+export default connect(mapStateToProps)(ArticleTittle);

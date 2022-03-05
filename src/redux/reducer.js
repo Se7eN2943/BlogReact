@@ -20,7 +20,7 @@ const reducer = (state = initialState, { payload, type }) => {
     case 'ARTICLE':
       return {
         ...state,
-        article: payload.article
+        article: payload.article,
       };
     case 'LOGOUT':
       return {
@@ -29,7 +29,7 @@ const reducer = (state = initialState, { payload, type }) => {
         image: '',
         email: '',
         username: '',
-        token: ''
+        token: '',
       };
     case 'SIGNIN':
       return {
