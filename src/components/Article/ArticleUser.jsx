@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux'
 import { format } from 'date-fns'
 import { Popover, Button } from 'antd';
+import { InfoCircleFilled } from '@ant-design/icons';
 import { Link, useNavigate } from 'react-router-dom'
 import blogAPI from '../../services'
+
 
 const blog = new blogAPI()
 
@@ -11,25 +13,27 @@ const ArticleUser = props => {
     const { author, createdAt, username, slug, alone, token, getAllArticles } = props
     const navigate = useNavigate()
     const data = createdAt !== undefined && createdAt.split('T')[0]
-
-    const text = <span>Title</span>;
-    const content = (
-        <div>
-            <p>Are you sure to delete this article?</p>
-            <a>No</a>
-            <a>Yes</a>
-        </div>
-    );
-
-
+    const [vilibale, setVisibale] = useState(false)
 
     const delArticle = async () => {
         await blog.delArticle(token, slug)
         getAllArticles()
         navigate('/articles', { replace: true })
+        setVisibale(false)
     }
 
-
+    const content = (
+        <div className="modal">
+            <div className="modal_title">
+                <InfoCircleFilled className="modal_title__icon" style={{ color: '#FAAD14' }} />
+                <p>Are you sure to delete this article?</p>
+            </div>
+            <div className="modal_buttons">
+                <Button onClick={() => setVisibale(false)} className='modal_buttons__button no'>No</Button>
+                <Button onClick={delArticle} className='modal_buttons__button' type="primary">Yes</Button>
+            </div>
+        </div>
+    );
 
 
     return (
@@ -52,14 +56,11 @@ const ArticleUser = props => {
                     <div className="article_user_buttons">
                         <Popover
                             placement="rightTop"
-                            title={text}
                             content={content}
-                            // visible={true}
-                            trigger="click"
+                            visible={vilibale}
                         >
-                            <Button>RT</Button>
+                            <Button onClick={() => setVisibale(true)} className="article_user_buttons__delete color-button">Delete</Button>
                         </Popover>
-                        <button onClick={delArticle} className="article_user_buttons__delete color-button" type='button'>Delete</button>
                         <Link to={`/articles/${slug}/edit`}>
                             <button className="article_user_buttons__edit color-button" type='button'>Edit</button>
                         </Link>

@@ -1,7 +1,5 @@
 @import '../../colors.scss';
 
-
-
 .article {
     width: 940px;
     justify-content: space-between;
@@ -75,6 +73,7 @@
     &_user {
         display: flex;
         margin-bottom: 30px;
+        justify-content: flex-end;
 
         &-wrapper {
             display: flex;
@@ -129,15 +128,13 @@
     display: flex;
     justify-content: end;
 
-    button {
-        padding: 6px 17px 3px 17px;
-    }
-
     &__delete {
         font-size: 14px;
         line-height: 22px;
         color: $red;
         border: 1px solid $red;
+        padding: 6px 17px 27px 17px;
+
     }
 
     &__edit {
@@ -146,5 +143,42 @@
         color: $success-color;
         border: 1px solid $success-color;
         margin-left: 12px;
+        padding: 6px 17px 5px 17px;
+    }
+}
+
+.modal {
+    width: 240px;
+
+    &_title {
+        display: flex;
+        justify-content: center;
+        align-items: start;
+
+        &__icon {
+            margin-top: 3px;
+            margin-right: 9px;
+        }
+
+        p {
+            font-size: 14px;
+            line-height: 22px;
+        }
+    }
+
+    &_buttons {
+        display: flex;
+        justify-content: flex-end;
+
+        .no {
+            margin-right: 8px;
+        }
+
+        &__button {
+            font-size: 14px;
+            line-height: 22px;
+            padding: 1px 8px 1px 8px;
+            border-radius: 4px;
+        }
     }
 }
