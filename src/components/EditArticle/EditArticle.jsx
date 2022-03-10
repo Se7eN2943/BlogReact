@@ -11,6 +11,7 @@ function EditArticle({ token, setArticle, username, article, getOneArticle }) {
   const { slug } = useParams()
 
   console.log('до', article)
+
   useEffect(() => {
     console.log('середина')
     blog.getArticle(slug, token).then((article) => {
@@ -18,6 +19,7 @@ function EditArticle({ token, setArticle, username, article, getOneArticle }) {
       localStorage.setItem('article', JSON.stringify(article));
     });
   }, []);
+  
   console.log('после', article)
 
   return username === article?.author?.username ? <CreateArticle editing /> : <Navigate to='/articles' />

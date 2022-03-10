@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import FormInput from '../Forms/FormInput';
 import BlogAPI from '../../services/services';
@@ -18,7 +18,7 @@ function Tag({ value, onDeleteTag }) {
   );
 }
 
-function NewTag({ onAddTag, errorMessage, setErrorMessage, getOneArticle }) {
+function NewTag({ onAddTag, errorMessage, setErrorMessage }) {
   const [tagValue, setTagValue] = useState('');
 
   const onAdd = () => {
