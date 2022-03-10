@@ -33,7 +33,7 @@ export default class BlogAPI {
       },
       body: JSON.stringify(user),
     });
-    if (!res.ok) alert('Ты пытался, но у тебя не вышло. Попробуй еще раз.');
+    if (!res.ok) return false;
     return await res.json();
   };
 
@@ -45,7 +45,10 @@ export default class BlogAPI {
       },
       body: JSON.stringify(user),
     });
-    if (!res.ok) alert('Ты пытался, но у тебя не вышло. Попробуй еще раз.');
+    if (!res.ok) {
+      if(res.status === 422) return '422' 
+      return false;
+    }
     return await res.json();
   };
 

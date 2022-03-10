@@ -68,7 +68,7 @@ function App(props) {
                 ) : (
                   <ArticleList getOneArticle={getOneArticle} />
                 )}
-                {totalRes > 20 && !load && (
+                {!load && (
                   <Pagination
                     showSizeChanger={false}
                     pageSize={20}

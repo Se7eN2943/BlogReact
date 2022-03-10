@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
