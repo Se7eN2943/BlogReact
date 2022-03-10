@@ -20,15 +20,25 @@ function EditProfile({ username, email, image, token, setSignIn, setUserImg }) {
   const [userAvatar, setUserAvatar] = useState(image);
   const navigate = useNavigate();
   const onSubmit = (data) => {
-    const user = {
-      user: {
-        username: data.username,
-        email: data.email,
-        password: data.password,
-        image: data.avatar,
-      },
-    };
-
+    let user
+    if (data.password.trim().length === 0) {
+      user = {
+        user: {
+          username: data.username,
+          email: data.email,
+          image: data.avatar
+        },
+      };
+    } else {
+      user = {
+        user: {
+          username: data.username,
+          email: data.email,
+          password: data.password,
+          image: data.avatar
+        },
+      };
+    }
     blog.putUserProfile(token, user).then(({ user }) => {
       const putUser = {
         username: user.username,
@@ -75,7 +85,6 @@ function EditProfile({ username, email, image, token, setSignIn, setUserImg }) {
           label="New password"
           type="password"
           {...register('password', {
-            required: true,
             minLength: {
               value: 6,
               message: 'Your password needs to be at least 6 characters.',

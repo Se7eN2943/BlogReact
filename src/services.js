@@ -33,7 +33,10 @@ export default class BlogAPI {
       },
       body: JSON.stringify(user),
     });
-    if (!res.ok) return false;
+    if (!res.ok) {
+      if (res.status === 422) return '422'
+      return false;
+    }
     return await res.json();
   };
 
@@ -46,7 +49,7 @@ export default class BlogAPI {
       body: JSON.stringify(user),
     });
     if (!res.ok) {
-      if(res.status === 422) return '422' 
+      if (res.status === 422) return '422'
       return false;
     }
     return await res.json();

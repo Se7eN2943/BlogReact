@@ -22,6 +22,7 @@ function SingUp({ setSignIn, setUserImg }) {
   const [checked, setChecked] = useState(false);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [modalText, setModalText] = useState('An error occurred while trying to send data. Please try again or refresh the page.');
 
   const onSubmit = async (data) => {
     const user = {
@@ -33,6 +34,10 @@ function SingUp({ setSignIn, setUserImg }) {
     };
     await blog.registerNewUser(user).then((res) => {
       if (!res) return setIsModalVisible(true)
+      if (res === '422') {
+        setModalText('Mail or login already exists.')
+        return setIsModalVisible(true)
+      }
       const { username, token, email } = res.user;
       setSignIn(res.user);
       blog.getUserProfile(username).then((res) => {
@@ -58,7 +63,7 @@ function SingUp({ setSignIn, setUserImg }) {
           <Button key="back" type='primary' onClick={() => setIsModalVisible(false)}>
             Ok
           </Button>]}>
-        <p>An error occurred while trying to send data. Please try again or refresh the page.</p>
+        <p>{modalText}</p>
       </Modal>
       <div className="form shadow-box">
         <h5> Create new account </h5>
