@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import store from './redux/store';
 import App from './components/App/App';
 import 'antd/dist/antd.css';
-import './reset.scss';
+import './style/reset.scss';
 import './components/App/App.scss';
 import './components/Header/Header.scss';
 import './components/Article/Article.scss';

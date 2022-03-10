@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import BlogAPI from '../../services';
+import BlogAPI from '../../services/services';
 
 const blog = new BlogAPI();
 

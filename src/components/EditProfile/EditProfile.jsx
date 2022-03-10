@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
-import FormInput from './FormInput';
-import BlogAPI from '../../services';
+import FormInput from '../Forms/FormInput';
+import BlogAPI from '../../services/services';
 import { setSignIn, setUserImg } from '../../redux/actions';
 
 const blog = new BlogAPI();

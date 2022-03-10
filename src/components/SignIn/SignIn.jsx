@@ -3,10 +3,10 @@ import { Modal, Button } from 'antd';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
-import FormInput from './FormInput';
-import BlogAPI from '../../services';
+import FormInput from '../Forms/FormInput';
+import BlogAPI from '../../services/services';
 import { setSignIn, setUserImg } from '../../redux/actions';
-import setLocalHost from '../../utiles';
+import setLocalHost from '../../services/utiles';
 
 const blog = new BlogAPI();
 

@@ -3,17 +3,17 @@ import { Pagination, Spin, Alert } from 'antd';
 import { connect } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { setArticles, setArticle } from '../../redux/actions';
-import BlogAPI from '../../services';
+import BlogAPI from '../../services/services';
 import Header from '../Header/Header';
 import ArticleList from '../ArticleList/ArticleList';
 import AlloneArticle from '../Article/AlloneArticle';
-import SignIn from '../Forms/SignIn';
-import SingUp from '../Forms/SingUp';
+import SignIn from '../SignIn/SignIn';
+import SingUp from '../SingUp/SingUp';
 import Private from '../HOC/Private';
 import OnAutoris from '../HOC/OnAutoris';
-import CreateArticle from '../Forms/CreateArticle';
-import EditProfile from '../Forms/EditProfile';
-import EditArticle from '../Forms/EditArticle';
+import CreateArticle from '../CreateArticle/CreateArticle';
+import EditProfile from '../EditProfile/EditProfile';
+import EditArticle from '../EditArticle/EditArticle';
 
 const blog = new BlogAPI();
 
@@ -113,7 +113,7 @@ function App(props) {
             path="articles/:slug/edit"
             element={
               <Private>
-                <EditArticle />
+                  <EditArticle getOneArticle={getOneArticle} />
               </Private>
             }
           />

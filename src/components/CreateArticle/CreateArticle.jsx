@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
-import FormInput from './FormInput';
-import BlogAPI from '../../services';
+import FormInput from '../Forms/FormInput';
+import BlogAPI from '../../services/services';
 
 const createArticleAPI = new BlogAPI();
 

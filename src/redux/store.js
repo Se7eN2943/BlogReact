@@ -4,7 +4,7 @@ import reducer from './reducer';
 
 const logger = (store) => (next) => (actions) => {
   const res = next(actions);
-  //   console.log(store.getState());
+    console.log(store.getState());
   return res;
 };
 

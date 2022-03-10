@@ -4,7 +4,7 @@ import { format } from 'date-fns';
 import { Popover, Button } from 'antd';
 import { InfoCircleFilled } from '@ant-design/icons';
 import { Link, useNavigate } from 'react-router-dom';
-import BlogAPI from '../../services';
+import BlogAPI from '../../services/services';
 
 const blog = new BlogAPI();
 
