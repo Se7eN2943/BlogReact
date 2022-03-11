@@ -6,7 +6,7 @@ import { setArticles, setArticle } from '../../redux/actions';
 import BlogAPI from '../../services/services';
 import Header from '../Header/Header';
 import ArticleList from '../ArticleList/ArticleList';
-import AlloneArticle from '../Article/AlloneArticle';
+import AlloneArticle from '../AlloneArticle/AlloneArticle';
 import SignIn from '../SignIn/SignIn';
 import SingUp from '../SingUp/SingUp';
 import Private from '../HOC/Private';
