@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import CreateArticle from '../CreateArticle/CreateArticle';
 import { setArticle } from '../../redux/actions';
@@ -9,6 +9,7 @@ const blog = new BlogAPI();
 
 function EditArticle({ token, setArticle, username, article }) {
   const { slug } = useParams()
+  const navigate = useNavigate()
 
   useEffect(() => {
     blog.getArticle(slug, token).then((article) => {
@@ -16,6 +17,8 @@ function EditArticle({ token, setArticle, username, article }) {
       localStorage.setItem('article', JSON.stringify(article));
     });
   }, []);
+
+  username !== article.author.username && navigate('/articles')
 
   return username === article.author.username ? <CreateArticle editing /> : null
 }

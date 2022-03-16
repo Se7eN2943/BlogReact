@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Pagination, Spin, Alert } from 'antd';
 import { connect } from 'react-redux';
-import { Routes, Route, Navigate, useParams } from 'react-router-dom';
+import { Routes, Route, Navigate} from 'react-router-dom';
 import { setArticles, setArticle } from '../../redux/actions';
 import BlogAPI from '../../services/services';
 import Header from '../Header/Header';
